@@ -14,8 +14,9 @@ function Signup() {
     const handleSubmit = (e)=>{
         e.preventDefault()
         axios.post('http://127.0.0.1:3002/register', {name, email, password, branch, semester})
-        .then(result => {console.log(result)
-        navigate('/login')
+        .then(result => {
+          console.log(result)
+          navigate('/login')
         })
         .catch(err=>console.log(err))
     }
