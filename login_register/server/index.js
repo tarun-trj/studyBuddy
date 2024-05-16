@@ -29,10 +29,11 @@ app.post("/login", (req, res) => {
             res.status(500).json({ message: "Internal server error" });
         });
 });
-app.post('/register', (req, res) => {
-    EmployeeModel.create(req.body)
-        .then(employees => res.json(employees))
-        .catch(err => res.json(err))
+app.post('/register', (req,res) => {
+    const { name, email, password, branch, semester } = req.body;
+    EmployeeModel.create({ name, email, password, branch, semester })
+    .then(employees => res.json(employees))
+    .catch(err => res.json(err))
 })
 
 app.listen(3002, () => {

@@ -7,10 +7,13 @@ function Signup() {
     const[name, setName] = useState('')
     const[email, setEmail] = useState('')
     const[password, setPassword] = useState('')
+    const[branch, setBranch] = useState('')
+    const[semester, setSemester] = useState('')
+
     const navigate = useNavigate()
     const handleSubmit = (e)=>{
         e.preventDefault()
-        axios.post('http://127.0.0.1:3002/register', {name, email, password})
+        axios.post('http://127.0.0.1:3002/register', {name, email, password, branch, semester})
         .then(result => {console.log(result)
         navigate('/login')
         })
@@ -30,7 +33,7 @@ function Signup() {
               type="text"
               placeholder="Enter Name"
               autoComplete="off"
-              name="email" 
+              name="name" 
               className="form-control rounded-0"
               onChange={(e) => setName(e.target.value)}
             />
@@ -46,6 +49,32 @@ function Signup() {
               name="email"
               className="form-control rounded-0"
               onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email">
+              <strong>Branch</strong>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter Branch"
+              autoComplete="off"
+              name="branch" 
+              className="form-control rounded-0"
+              onChange={(e) => setBranch(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email">
+              <strong>Semester</strong>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter Semester"
+              autoComplete="off"
+              name="semester" 
+              className="form-control rounded-0"
+              onChange={(e) => setSemester(e.target.value)}
             />
           </div>
           <div className="mb-3">
