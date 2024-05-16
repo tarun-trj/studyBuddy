@@ -28,7 +28,8 @@ app.post("/login", (req, res) => {
             console.error("Error during login:", err);
             res.status(500).json({ message: "Internal server error" });
         });
-});
+})
+
 app.post('/register', (req,res) => {
     const { name, email, password, branch, semester } = req.body;
     EmployeeModel.create({ name, email, password, branch, semester })
@@ -36,6 +37,23 @@ app.post('/register', (req,res) => {
     .catch(err => res.json(err))
 })
 
+app.post('/match', (req,res) => {
+    const { branch } = req.body;
+    EmployeeModel.find({ branch: branch })
+        .then((employees) => { // 'employees' will contain the result of the query
+            if (employees.length) {
+                res.status(200).json(employees); // Sending back the employees as JSON
+            } else {
+                res.status(404).json({ message: "No employees found in this branch" });
+            }
+
+        })
+        .catch((err) => {
+            console.error("Error during query:", err);
+            res.status(500).json({ message: "Internal server error" });
+        });
+});
+
 app.listen(3002, () => {
     console.log("Server is running")
-})
+});
