@@ -2,6 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
 const EmployeeModel = require("./models/Employee")
+const SubjectModel = require("./models/subject")
 
 const app = express()
 app.use(express.json())
@@ -30,27 +31,26 @@ app.post("/login", (req, res) => {
         });
 })
 
-app.post('/register', (req,res) => {
+app.post('/register', (req, res) => {
     const { name, email, password, branch, semester } = req.body;
     EmployeeModel.create({ name, email, password, branch, semester })
-    .then(employees => res.json(employees))
-    .catch(err => res.json(err))
+        .then(employees => res.json(employees))
+        .catch(err => res.json(err))
 })
 
-app.post('/match', (req,res) => {
-    const { branch } = req.body;
-    EmployeeModel.find({ branch: branch })
-        .then((employees) => { // 'employees' will contain the result of the query
-            if (employees.length) {
-                res.status(200).json(employees); // Sending back the employees as JSON
-            } else {
-                res.status(404).json({ message: "No employees found in this branch" });
-            }
+app.post('/match', (req, res) => {
+    const { subjects, email } = req.body;
 
-        })
-        .catch((err) => {
-            console.error("Error during query:", err);
-            res.status(500).json({ message: "Internal server error" });
+    // Define the update and the options
+    const update = { subjects: subjects }; // specify the fields to update
+    const options = { new: true, upsert: true }; // 'new: true' returns the modified document rather than the original. 'upsert: true' creates a new doc if no match is found
+
+    // Use findOneAndUpdate to either update the existing entry or create a new one
+    SubjectModel.findOneAndUpdate({ email: email }, update, options)
+        .then(result => res.json(result))
+        .catch(err => {
+            console.error("Error updating or creating subject:", err);
+            res.status(500).json({ message: "Internal server error", error: err });
         });
 });
 
