@@ -1,59 +1,24 @@
-const express = require("express")
-const mongoose = require("mongoose")
-const cors = require("cors")
-const EmployeeModel = require("./models/Employee")
-const SubjectModel = require("./models/subject")
+// index.js
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import employeeRouter from './routes/employeeRoutes.js';
+import subjectRouter from './routes/subjectRoutes.js';
+import matchRouter from './routes/matchRoutes.js';
 
-const app = express()
-app.use(express.json())
-app.use(cors())
+const app = express();
 
-mongoose.connect("mongodb://127.0.0.1:27017/employee")
+app.use(express.json());
+app.use(cors());
 
-app.post("/login", (req, res) => {
-    const { email, password } = req.body;
-    EmployeeModel.findOne({ email: email })
-        .then((user) => {
-            if (user) {
-                if (user.password === password) {
-                    // Send user data upon successful login
-                    res.json({ message: "Login Success", user });
-                } else {
-                    res.json({ message: "Password is wrong" });
-                }
-            } else {
-                res.json({ message: "User not found" });
-            }
-        })
-        .catch((err) => {
-            console.error("Error during login:", err);
-            res.status(500).json({ message: "Internal server error" });
-        });
-})
+mongoose.connect('mongodb://127.0.0.1:27017/employee')
+  .then(() => console.log('MongoDB connected successfully'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
-app.post('/register', (req, res) => {
-    const { name, email, password, branch, semester } = req.body;
-    EmployeeModel.create({ name, email, password, branch, semester })
-        .then(employees => res.json(employees))
-        .catch(err => res.json(err))
-})
-
-app.post('/match', (req, res) => {
-    const { subjects, email } = req.body;
-
-    // Define the update and the options
-    const update = { subjects: subjects }; // specify the fields to update
-    const options = { new: true, upsert: true }; // 'new: true' returns the modified document rather than the original. 'upsert: true' creates a new doc if no match is found
-
-    // Use findOneAndUpdate to either update the existing entry or create a new one
-    SubjectModel.findOneAndUpdate({ email: email }, update, options)
-        .then(result => res.json(result))
-        .catch(err => {
-            console.error("Error updating or creating subject:", err);
-            res.status(500).json({ message: "Internal server error", error: err });
-        });
-});
+app.use(employeeRouter);
+app.use(subjectRouter);
+app.use(matchRouter);
 
 app.listen(3002, () => {
-    console.log("Server is running")
+  console.log("Server is running on port 3002");
 });
