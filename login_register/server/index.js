@@ -4,7 +4,9 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import employeeRouter from './routes/employeeRoutes.js';
 import subjectRouter from './routes/subjectRoutes.js';
-import matchRouter from './routes/matchRoutes.js';
+// import matchRouter from './routes/matchRoutes.js';
+import { startScheduledTasks } from './routes/matchRoutes.js';
+const time = 600000;
 
 const app = express();
 
@@ -17,7 +19,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/employee')
 
 app.use(employeeRouter);
 app.use(subjectRouter);
-app.use(matchRouter);
+
+startScheduledTasks(time);
 
 app.listen(3002, () => {
   console.log("Server is running on port 3002");
