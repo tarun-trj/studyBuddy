@@ -1,34 +1,31 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+// Home.jsx
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function Match() {
-    const location = useLocation();  // Access location object
-    const employees = location.state ? location.state.employees : [];  // Access passed state
+    const [email, setEmail] = useState('');
+    const [partnerEmail, setPartnerEmail] = useState('');
 
-    const findMatch = () => {
-        // data has been posted assume
-        // this will trigger the matching to start
-    }
-    // waiting screen till the matching completes / time to matching arrives
+    const fetchPartnerEmail = async () => {
+        try {
+            const response = await axios.post('/match', { email });
+            setPartnerEmail(response.data.partnerEmail);
+        } catch (error) {
+            console.error('Error fetching partner email:', error);
+        }
+    };
+
     return (
         <div>
-            <h1>Employee Directory</h1>
-            <div>
-                <h2>Employees:</h2>
-                {employees.length > 0 ? (
-                    <ul>
-                        {employees.map(employee => (
-                            <li key={employee._id}>
-                                {employee.name}
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No employees found.</p>
-                )}
-            </div>
-
-            <button to="/findMatch" onClick={findMatch}></button>
+            <h1>Match Page</h1>
+            <input 
+                type="email" 
+                placeholder="Enter your email" 
+                value={email} 
+                onChange={e => setEmail(e.target.value)} 
+            />
+            <button onClick={fetchPartnerEmail}>Submit Query</button>
+            {partnerEmail && <p>Partner's Email: {partnerEmail}</p>}
         </div>
     );
 }
