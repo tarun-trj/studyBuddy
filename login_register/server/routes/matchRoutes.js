@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import express from 'express';
 import EmployeeModel from '../models/EmployeeModel.js';
 import SubjectModel from '../models/SubjectModel.js';
+import MatchedModel from '../models/MatchedModel.js'
 import * as d3 from 'd3';
 
 const app = express();
@@ -58,21 +59,28 @@ function stableMarriage(students, subjects) {
     while (freeStudents.length > 0) {
         let student = freeStudents.shift();
         let preferredSubject = studentPreferences[student].shift();
-        
+
         if (!matches.has(preferredSubject)) {
             matches.set(preferredSubject, student);
         } else {
             let currentMatch = matches.get(preferredSubject);
             if (subjectPreferences[preferredSubject].indexOf(student) < subjectPreferences[preferredSubject].indexOf(currentMatch)) {
+                freeStudents.push(matches.get(preferredSubject)); // Push the currently matched student back to the free pool
                 matches.set(preferredSubject, student);
-                freeStudents.push(currentMatch);
             } else {
                 freeStudents.push(student);
             }
         }
     }
-    return matches;
+
+    // Convert the matches from a Map to an array of objects with email1 and email2
+    let result = [];
+    matches.forEach((value, key) => {
+        result.push({ email1: value, email2: key });
+    });
+    return result;
 }
+
 
 function initializePreferences(primaryList, secondaryList) {
     const preferences = {};
@@ -101,6 +109,7 @@ function displayMatching(matching, emails) {
 }
 
 function handleData() {
+    // Fetch employees and subjects from the database
     EmployeeModel.find().select('email branch')
         .then(employees => {
             if (employees.length === 0) {
@@ -113,30 +122,46 @@ function handleData() {
                         console.log("No subjects found");
                         return; // Exit if no subjects are found
                     }
+                    // Assuming joinData properly merges and formats these arrays
                     return joinData(employees, subjects);
                 });
         })
         .then(joinedData => {
             if (!joinedData) return; // If there's no data to process, exit
+            // Process the data to get it ready for matching
             const processedData = processData(joinedData);
             const emails = processedData.map(d => d.email);
-            const matrix = createAdjacencyMatrix(processedData, emails);
-            const adjacencyList = createAdjacencyList(matrix, emails);
-            console.log("Data joined:", joinedData);
-            console.log("Adjacency List:", adjacencyList);
-
-            const studentEmails = emails.slice(0, Math.floor(emails.length / 2)); // Example split
+            const studentEmails = emails.slice(0, Math.floor(emails.length / 2));
             const subjectEmails = emails.slice(Math.floor(emails.length / 2));
 
-            const stableMatching = stableMarriage(studentEmails, subjectEmails);
-            console.log("Stable Matching:", stableMatching);
+            // Generate stable matches
+            return stableMarriage(studentEmails, subjectEmails);
+        })
+        .then(stableMatching => {
+            if (!stableMatching || stableMatching.length === 0) {
+                console.log("No stable matches found");
+                return;
+            }
 
-            displayMatching(stableMatching, emails);
+            // Save each matching pair to the database
+            return Promise.all(stableMatching.map(match => {
+                const newMatch = new MatchedModel({
+                    email1: match.email1,
+                    email2: match.email2,
+                    time: 1 // Here we ensure the time is set to the current timestamp
+                });
+                return newMatch.save();
+            }));
+        })
+        .then(savedMatches => {
+            console.log("Matches saved to the database:", savedMatches);
+            // Optional: Further actions or logging can be performed here
         })
         .catch(error => {
             console.error('Error during data handling operation:', error);
         });
 }
+
 
 function startScheduledTasks(time) {
     handleData(); // Run immediately when the server starts

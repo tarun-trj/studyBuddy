@@ -4,9 +4,10 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import employeeRouter from './routes/employeeRoutes.js';
 import subjectRouter from './routes/subjectRoutes.js';
-// import matchRouter from './routes/matchRoutes.js';
+import matchingRouter from './routes/getMatching.js'; // Import the new matching router
 import { startScheduledTasks } from './routes/matchRoutes.js';
-const time = 600000;
+
+const time = 6000000;
 
 const app = express();
 
@@ -19,6 +20,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/employee')
 
 app.use(employeeRouter);
 app.use(subjectRouter);
+app.use(matchingRouter); // Use the new matching router
 
 startScheduledTasks(time);
 

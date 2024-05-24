@@ -1,34 +1,52 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function Match() {
-    const location = useLocation();  // Access location object
-    const employees = location.state ? location.state.employees : [];  // Access passed state
+    const [email, setEmail] = useState('');
+    const [partnerEmail, setPartnerEmail] = useState('');
+    const [error, setError] = useState('');
 
-    const findMatch = () => {
-        // data has been posted assume
-        // this will trigger the matching to start
-    }
-    // waiting screen till the matching completes / time to matching arrives
+    const handleInputChange = (event) => {
+        setEmail(event.target.value);
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setError(''); // Clear previous errors
+        setPartnerEmail(''); // Clear previous results
+
+        try {
+            const response = await axios.post("http://127.0.0.1:3002/find", { email });
+            console.log(response);
+            if (response.data.emailRes) {
+                setPartnerEmail(response.data.emailRes);
+            } else {
+                setError('No partner found for this email.');
+            }
+        } catch (err) {
+            // Specific error handling for not found
+            if (err.response && err.response.status === 404) {
+                setError('API endpoint not found. Please check the URL.');
+            } else if (err.response && err.response.status === 500) {
+                setError('Internal server error. Please try again later.');
+            } else {
+                setError('Failed to fetch partner email. Please try again later.');
+            }
+        }
+    };
+
     return (
         <div>
-            <h1>Employee Directory</h1>
-            <div>
-                <h2>Employees:</h2>
-                {employees.length > 0 ? (
-                    <ul>
-                        {employees.map(employee => (
-                            <li key={employee._id}>
-                                {employee.name}
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No employees found.</p>
-                )}
-            </div>
-
-            <button to="/findMatch" onClick={findMatch}></button>
+            <h1>Find Your Partner's Email</h1>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Enter your email:
+                    <input type="email" value={email} onChange={handleInputChange} required />
+                </label>
+                <button type="submit">Find Partner Email</button>
+            </form>
+            {partnerEmail && <p>Partner Email: {partnerEmail}</p>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
     );
 }

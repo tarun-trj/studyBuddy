@@ -18,7 +18,7 @@ function Home() {
   const [query2, setQuery2] = useState("");
   const [query3, setQuery3] = useState("");
   const [query4, setQuery4] = useState(""); // State to hold the input value
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -78,21 +78,18 @@ function Home() {
           type="text"
           value={query2}
           onChange={(e) => setQuery2(e.target.value)}
-
           placeholder="Enter your query"
         />
         <input
           type="text"
           value={query3}
           onChange={(e) => setQuery3(e.target.value)}
-
           placeholder="Enter your query"
         />
         <input
           type="text"
           value={query4}
           onChange={(e) => setQuery4(e.target.value)}
-
           placeholder="Enter your query"
         />
         <button onClick={handleSubmit}>Submit Query</button>
