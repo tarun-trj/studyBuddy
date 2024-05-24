@@ -1,38 +1,33 @@
-// getmatching.js
 import express from 'express';
-import MatchedModel from '../models/MatchedModel.js';
-import EmployeeModel from '../models/EmployeeModel.js';
+import MatchModel from '../models/MatchedModel.js' // Ensure this path is correct
 
 const router = express.Router();
 
-// Endpoint to get partner email based on user's email provided in the request body
-router.post('/match', async (req, res) => {
-    const userEmail = req.body.email;
+// Middleware to parse JSON bodies
+router.use(express.json());
+
+// Route to get matches by employee email using POST method
+router.post('/find', async (req, res) => {
+    const { email } = req.body; // Get email from the request body
+    console.log(req.body);
+    if (!email) {
+        return res.status(400).json({ message: "Email field is required." });
+    }
 
     try {
-        // Find the match record for the given email
-        const match = await MatchedModel.findOne({ $or: [{ email1: userEmail }, { email2: userEmail }] });
+        // Find the match where the employee's email could be either email1 or email2
+        const match = await MatchModel.findOne({ $or: [{ email1: email }, { email2: email }] });
 
         if (!match) {
-            return res.status(404).json({ message: 'No match found' });
+            return res.status(404).json({ message: "No match found for the provided email." });
         }
 
-        // Determine the partner's email
-        const partnerEmail = match.email1 === userEmail ? match.email2 : match.email1;
-
-        // Find the partner's employee record
-        const partner = await EmployeeModel.findOne({ email: partnerEmail });
-
-        if (!partner) {
-            return res.status(404).json({ message: 'Partner not found' });
-        }
-
-        // Return the partner's email
-        res.json({ partnerEmail: partner.email });
-
+        // Determine the partner's email based on which email matches the provided one
+        const emailRes = (email === match.email1) ? match.email2 : match.email1;
+        res.json({ emailRes }); // Send the partner's email as a response
     } catch (error) {
-        console.error('Error fetching match:', error);
-        res.status(500).json({ message: 'Internal server error' });
+        console.error("Failed to retrieve match:", error);
+        res.status(500).json({ message: "Failed to retrieve match due to server error." });
     }
 });
 
