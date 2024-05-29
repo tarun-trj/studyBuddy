@@ -34,7 +34,7 @@ function Login() {
       if (response.status === 200) {
         toast.success("Login successful");
         // Assuming response.data contains a token and user information
-        storeTokenInLS(response.data.token);
+        storeTokenInSS(response.data.token);
         navigate("/home", {
           replace: true,
           state: { user: response.data.user }
@@ -56,8 +56,8 @@ function Login() {
     }
   };
 
-  const storeTokenInLS = (token) => {
-    localStorage.setItem('authToken', token);
+  const storeTokenInSS = (token) => {
+    sessionStorage.setItem('token', token);
   };
 
   return (

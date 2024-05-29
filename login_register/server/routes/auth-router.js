@@ -15,5 +15,4 @@ router.route('/login')
 // router.route('/user')
 //   .get(authMiddleware, authControllers.user);
 
-
 export default router;
