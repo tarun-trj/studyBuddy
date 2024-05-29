@@ -1,4 +1,9 @@
 import studentModel from '../models/student-model.js';
+import dotenv from 'dotenv';
+const result = dotenv.config({path: './server/.env'});
+if (result.error) {
+  throw result.error;
+}
 
 const register = async (req, res) => {
     const { name, email, password, branch, semester } = req.body;
@@ -21,6 +26,11 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
+    if (!process.env.JWT_SECRET_KEY) {
+        console.error("JWT secret key is not set.");
+        throw new Error("JWT secret key is not defined.");
+    }
+
     try {
       const { email, password } = req.body;
   
@@ -35,9 +45,11 @@ const login = async (req, res) => {
       const user = await userExist.comparePassword(password);
   
       if (user) {
+        const token = await userExist.generateToken();
+        console.log("Token created: ", token); // Log statement for token creation
         res.status(200).json({
           msg: "Login Successful",
-          token: await userExist.generateToken(),
+          token: token,
           userId: userExist._id.toString(),
           user: {name: userExist.name, email: userExist.email},
         });
