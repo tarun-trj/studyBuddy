@@ -2,10 +2,11 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import employeeRouter from './routes/employeeRoutes.js';
+import employeeRouter from './routes/auth-router.js';
 import subjectRouter from './routes/subjectRoutes.js';
-import matchingRouter from './routes/getMatching.js'; // Import the new matching router
-import { startScheduledTasks } from './routes/matchRoutes.js';
+import matchingRouter from './routes/find-match-router.js'; // Import the new matching router
+import { startScheduledTasks } from './controllers/match-controller.js';
+import errorHandler from './middleware/error-middleware.js';
 
 const time = 6000000;
 
@@ -24,6 +25,7 @@ app.use(matchingRouter); // Use the new matching router
 
 startScheduledTasks(time);
 
+app.use(errorHandler);
 app.listen(3002, () => {
   console.log("Server is running on port 3002");
 });

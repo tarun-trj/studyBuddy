@@ -5,5 +5,5 @@ const subjectSchema = new mongoose.Schema({
     email: { type: String, required: true }
 });
 
-const SubjectModel = mongoose.model("Subject", subjectSchema);
-export default SubjectModel;
+const subjectModel = mongoose.model("Subject", subjectSchema);
+export default subjectModel;

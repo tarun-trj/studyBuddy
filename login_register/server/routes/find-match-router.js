@@ -1,10 +1,9 @@
-// routes/subjectRoutes.js
+import { find } from '../controllers/find-match-controller.js';
 import express from 'express';
-import { subject } from '../controllers/subject-controller.js';
 
 const router = express.Router();
 
 router.route('/find')
-  .post(subject);
+  .post(find);
 
 export default router;

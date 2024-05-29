@@ -11,14 +11,23 @@ function Signup() {
     const[semester, setSemester] = useState('')
 
     const navigate = useNavigate()
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e) => { 
         e.preventDefault()
-        axios.post('http://127.0.0.1:3002/register', {name, email, password, branch, semester})
-        .then(result => {
-          console.log(result)
-          navigate('/login')
-        })
-        .catch(err=>console.log(err))
+
+        try {
+          const userData = {
+            name: name,
+            email: email,
+            password: password,
+            branch: branch,
+            semester: semester
+          };
+          const response = await axios.post('http://127.0.0.1:3002/register', userData);
+          console.log('Registration successful', response.data); 
+          navigate('/login'); // Navigate to login page on successful registration
+        } catch (error) {
+          console.error('Failed to register', error);
+        }
     }
 
   return (

@@ -1,9 +1,7 @@
-import mongoose from 'mongoose';
 import express from 'express';
-import EmployeeModel from '../models/EmployeeModel.js';
-import SubjectModel from '../models/SubjectModel.js';
-import MatchedModel from '../models/MatchedModel.js'
-import * as d3 from 'd3';
+import studentModel from '../models/student-model.js';
+import subjectModel from '../models/subject-model.js';
+import matchedModel from '../models/match-model.js'
 
 const app = express();
 
@@ -22,33 +20,33 @@ function joinData(employees, subjects) {
     }));
 }
 
-function createAdjacencyMatrix(data, emails) {
-    const matrix = emails.map(email1 =>
-        emails.map(email2 => {
-            if (email1 === email2) return 0; // No self-loops
-            const subjects1 = new Set(data.find(d => d.email === email1).subjects);
-            const subjects2 = new Set(data.find(d => d.email === email2).subjects);
-            const commonSubjects = [...subjects1].filter(subject => subjects2.has(subject)).length;
-            return commonSubjects;
-        })
-    );
-    return matrix;
-}
+// function createAdjacencyMatrix(data, emails) {
+//     const matrix = emails.map(email1 =>
+//         emails.map(email2 => {
+//             if (email1 === email2) return 0; // No self-loops
+//             const subjects1 = new Set(data.find(d => d.email === email1).subjects);
+//             const subjects2 = new Set(data.find(d => d.email === email2).subjects);
+//             const commonSubjects = [...subjects1].filter(subject => subjects2.has(subject)).length;
+//             return commonSubjects;
+//         })
+//     );
+//     return matrix;
+// }
 
-function createAdjacencyList(matrix, emails) {
-    const adjacencyList = {};
+// function createAdjacencyList(matrix, emails) {
+//     const adjacencyList = {};
 
-    for (let i = 0; i < matrix.length; i++) {
-        adjacencyList[emails[i]] = [];
-        for (let j = 0; j < matrix[i].length; j++) {
-            if (matrix[i][j] > 0) {
-                adjacencyList[emails[i]].push({ email: emails[j], weight: matrix[i][j] });
-            }
-        }
-    }
+//     for (let i = 0; i < matrix.length; i++) {
+//         adjacencyList[emails[i]] = [];
+//         for (let j = 0; j < matrix[i].length; j++) {
+//             if (matrix[i][j] > 0) {
+//                 adjacencyList[emails[i]].push({ email: emails[j], weight: matrix[i][j] });
+//             }
+//         }
+//     }
 
-    return adjacencyList;
-}
+//     return adjacencyList;
+// }
 
 function stableMarriage(students, subjects) {
     let freeStudents = [...students];
@@ -110,13 +108,13 @@ function displayMatching(matching, emails) {
 
 function handleData() {
     // Fetch employees and subjects from the database
-    EmployeeModel.find().select('email branch')
+    studentModel.find().select('email branch')
         .then(employees => {
             if (employees.length === 0) {
                 console.log("No employees found");
                 return; // Exit if no employees are found
             }
-            return SubjectModel.find().select('email subjects')
+            return subjectModel.find().select('email subjects')
                 .then(subjects => {
                     if (subjects.length === 0) {
                         console.log("No subjects found");
@@ -145,7 +143,7 @@ function handleData() {
 
             // Save each matching pair to the database
             return Promise.all(stableMatching.map(match => {
-                const newMatch = new MatchedModel({
+                const newMatch = new matchedModel({
                     email1: match.email1,
                     email2: match.email2,
                     time: 1 // Here we ensure the time is set to the current timestamp
