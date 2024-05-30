@@ -6,6 +6,7 @@ import Home from "./Home.jsx";
 import Match from "./Match.jsx";
 import About from "./About.jsx";
 import AllUser from "./AllUser.jsx";
+import Todo from "./components/todo.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/match" element={<Match />}></Route>
+        <Route path="/todo" element={<Todo />}></Route>
       </Routes>
     </BrowserRouter>
   );

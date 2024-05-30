@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Home() {
-  const [errors, setError] = useState('');
+  const [errors, setError] = useState("");
   const navigate = useNavigate();
   const [submissionSuccessful, setSubmissionSuccessful] = useState(false); // New state for tracking submission success
   const [noInput, setNoInput] = useState(true);
@@ -22,7 +22,6 @@ function Home() {
     return <div>Loading...</div>;
   }
 
-
   const handleInput = (e) => {
     const { name, value } = e.target;
     setQuery((prev) => ({
@@ -35,61 +34,74 @@ function Home() {
     if (errors) {
       console.log("Error logged:", errors);
     }
-  }, [errors]);  // This useEffect will run every time `errors` changes.
+  }, [errors]); // This useEffect will run every time `errors` changes.
+
+  const handleTodoSubmit = () => {
+    navigate("/todo"); // Navigate to /todo route
+  };
+
+  const handleDisplaySubmit = () => {
+    navigate("/all-user"); // Navigate to /todo route
+  };
 
   const handleMatchSubmit = async (e) => {
     e.preventDefault();
-    const token = sessionStorage.getItem('token');  // Retrieving the token
+    const token = sessionStorage.getItem("token"); // Retrieving the token
     const email = user.email;
     console.log(token);
 
     try {
-      const response = await axios.post("http://127.0.0.1:3002/find", { email }, {
-        headers: {
-          "Authorization": `Bearer ${token}`,  // Include the token in the request header
-          "Content-Type": "application/json"
+      const response = await axios.post(
+        "http://127.0.0.1:3002/find",
+        { email },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the request header
+            "Content-Type": "application/json",
+          },
         }
-      });
+      );
 
       console.log(response);
       if (response.data.emailRes) {
         navigate("/match", {
           replace: true,
-          state: { partner: response.data.emailRes }
-        })
+          state: { partner: response.data.emailRes },
+        });
       } else {
-          setError('No partner found for this email.');
+        setError("No partner found for this email.");
       }
     } catch (err) {
-        if (err.response) {
-            console.log("Error Status:" + err.response.status);
-            setError(err.response.data.message || 'Unknown error');
-        } else {
-            setError('Failed to fetch partner email. Please try again later.');
-        }
+      if (err.response) {
+        console.log("Error Status:" + err.response.status);
+        setError(err.response.data.message || "Unknown error");
+      } else {
+        setError("Failed to fetch partner email. Please try again later.");
+      }
 
-        setSubmissionSuccessful(false);
-        if(err.response.status === 414) {
-          setSubmissionSuccessful(true);
-        }
-        
+      setSubmissionSuccessful(false);
+      if (err.response.status === 414) {
+        setSubmissionSuccessful(true);
+      }
     }
-
-  }
+  };
 
   const handleSubjectSubmit = async (e) => {
     e.preventDefault();
-    const token = sessionStorage.getItem('token');
+    const token = sessionStorage.getItem("token");
     console.log(token);
-    if(!token) {
+    if (!token) {
       console.log("no token found");
     }
-    
+
     // Merge queries into an array, filtering out null or empty values
-    const queries = [query.query1, query.query2, query.query3, query.query4].filter(
-      (query) => query.trim() !== ""
-    );
-    
+    const queries = [
+      query.query1,
+      query.query2,
+      query.query3,
+      query.query4,
+    ].filter((query) => query.trim() !== "");
+
     console.log(queries);
 
     if (queries.length === 0) {
@@ -103,11 +115,15 @@ function Home() {
     setError("");
 
     try {
-      const response = await axios.post('http://127.0.0.1:3002/match', {subjects: queries, email: user.email}, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.post(
+        "http://127.0.0.1:3002/match",
+        { subjects: queries, email: user.email },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       console.log(response.data);
       setSubmissionSuccessful(true);
       //navigate('/match', { state: { employees: response.data} });
@@ -164,9 +180,12 @@ function Home() {
           placeholder="Enter your query"
         />
         <button onClick={handleSubjectSubmit}>Submit Query</button>
+
         {submissionSuccessful && (
           <button onClick={handleMatchSubmit}>New Button</button>
         )}
+        <button onClick={handleTodoSubmit}>myTodo</button>
+        <button onClick={handleDisplaySubmit}>display users</button>
       </div>
     </div>
   );
