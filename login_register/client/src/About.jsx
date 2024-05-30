@@ -60,6 +60,9 @@ const App = () => {
           </a>{" "}
           to start finding your study buddies today.
         </p>
+        <a href="/all-user" style={pageStyles.link}>
+          show everyone
+        </a>
       </div>
     </div>
   );

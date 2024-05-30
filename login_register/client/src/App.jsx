@@ -5,6 +5,7 @@ import Login from "./Login.jsx";
 import Home from "./Home.jsx";
 import Match from "./Match.jsx";
 import About from "./About.jsx";
+import AllUser from "./AllUser.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<About />}></Route>
+        <Route path="/all-user" element={<AllUser />}></Route>
         <Route path="/register" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/home" element={<Home />}></Route>

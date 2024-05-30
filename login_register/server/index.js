@@ -7,6 +7,7 @@ import subjectRouter from './routes/subjectRoutes.js';
 import matchingRouter from './routes/find-match-router.js'; // Import the new matching router
 import { startScheduledTasks } from './controllers/match-controller.js';
 import errorHandler from './middleware/error-middleware.js';
+import allUsersRouter from './controllers/all-user-controller.js';
 
 const time = 6000000;
 
@@ -22,6 +23,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/employee')
 app.use(employeeRouter);
 app.use(subjectRouter);
 app.use(matchingRouter);
+app.use(allUsersRouter);
 
 startScheduledTasks(time);
 
