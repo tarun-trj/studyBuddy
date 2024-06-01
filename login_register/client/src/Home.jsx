@@ -2,12 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Sidebar from "./components/sidebar.jsx";
 
 function Home() {
   const [errors, setError] = useState("");
   const navigate = useNavigate();
   const [submissionSuccessful, setSubmissionSuccessful] = useState(false); // New state for tracking submission success
-  const [noInput, setNoInput] = useState(true);
   const location = useLocation();
   const user = location.state?.user;
   const [query, setQuery] = useState({
@@ -145,47 +145,50 @@ function Home() {
   };
 
   return (
-    <div className="container">
-      <h1>Welcome, {user.name}!</h1>
-      <div>
-        <p>Email: {user.email}</p>
-        <p>Email: {user.branch}</p>
-        <input
-          type="text"
-          name="query1"
-          value={query.query1}
-          onChange={handleInput}
-          placeholder="Enter your query"
-        />
+    <div>
+      <Sidebar />
+      <div className="main-content">
+        <h1>Welcome, {user.name}!</h1>
+        <div>
+          <p>Email: {user.email}</p>
+          <p>Email: {user.branch}</p>
+          <input
+            type="text"
+            name="query1"
+            value={query.query1}
+            onChange={handleInput}
+            placeholder="Enter your query"
+          />
 
-        <input
-          type="text"
-          name="query2"
-          value={query.query2}
-          onChange={handleInput}
-          placeholder="Enter your query"
-        />
-        <input
-          type="text"
-          name="query3"
-          value={query.query3}
-          onChange={handleInput}
-          placeholder="Enter your query"
-        />
-        <input
-          type="text"
-          name="query4"
-          value={query.query4}
-          onChange={handleInput}
-          placeholder="Enter your query"
-        />
-        <button onClick={handleSubjectSubmit}>Submit Query</button>
+          <input
+            type="text"
+            name="query2"
+            value={query.query2}
+            onChange={handleInput}
+            placeholder="Enter your query"
+          />
+          <input
+            type="text"
+            name="query3"
+            value={query.query3}
+            onChange={handleInput}
+            placeholder="Enter your query"
+          />
+          <input
+            type="text"
+            name="query4"
+            value={query.query4}
+            onChange={handleInput}
+            placeholder="Enter your query"
+          />
+          <button onClick={handleSubjectSubmit}>Submit Query</button>
 
-        {submissionSuccessful && (
-          <button onClick={handleMatchSubmit}>New Button</button>
-        )}
-        <button onClick={handleTodoSubmit}>myTodo</button>
-        <button onClick={handleDisplaySubmit}>display users</button>
+          {submissionSuccessful && (
+            <button onClick={handleMatchSubmit}>New Button</button>
+          )}
+          <button onClick={handleTodoSubmit}>myTodo</button>
+          <button onClick={handleDisplaySubmit}>display users</button>
+        </div>
       </div>
     </div>
   );
