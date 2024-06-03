@@ -8,9 +8,12 @@ import About from "./About.jsx";
 import AllUser from "./AllUser.jsx";
 import Todo from "./components/todo.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./auth/auth-context.jsx";
+import ProtectedRoute from "./components/protectedRoute.jsx";
 
 function App() {
   return (
+    <AuthProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<About />}></Route>
@@ -19,9 +22,14 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/match" element={<Match />}></Route>
-        <Route path="/todo" element={<Todo />}></Route>
+        <Route path="/todo" element={
+            <ProtectedRoute>
+              <Todo />
+            </ProtectedRoute>
+          }></Route>
       </Routes>
     </BrowserRouter>
+    </AuthProvider>
   );
 }
 

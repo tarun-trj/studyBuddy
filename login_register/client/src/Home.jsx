@@ -5,11 +5,12 @@ import Sidebar from "./components/sidebar.jsx";
 import './styles/styles.css';
 
 function Home() {
+  const item = sessionStorage.getItem("user");
+  var user = JSON.parse(item);
+  
   const [errors, setError] = useState("");
   const navigate = useNavigate();
   const [submissionSuccessful, setSubmissionSuccessful] = useState(false);
-  const location = useLocation();
-  const user = location.state?.user;
   const [query, setQuery] = useState({
     query1: "",
     query2: "",

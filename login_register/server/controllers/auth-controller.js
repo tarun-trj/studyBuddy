@@ -1,6 +1,6 @@
 import studentModel from '../models/student-model.js';
 import dotenv from 'dotenv';
-const result = dotenv.config({ path: './login_register/server/.env' });
+const result = dotenv.config({ path: './.env' });
 if (result.error) {
   throw result.error;
 }
@@ -51,7 +51,7 @@ const login = async (req, res) => {
         msg: "Login Successful",
         token: token,
         userId: userExist._id.toString(),
-        user: { name: userExist.name, email: userExist.email },
+        user: { name: userExist.name, email: userExist.email, branch: userExist.branch},
       });
     } else {
       res.status(401).json({ message: "Invalid email or password" });

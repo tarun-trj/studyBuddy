@@ -33,12 +33,11 @@ function Login() {
 
       if (response.status === 200) {
         toast.success("Login successful");
+        const user = response.data.user;
         // Assuming response.data contains a token and user information
         storeTokenInSS(response.data.token);
-        navigate("/home", {
-          replace: true,
-          state: { user: response.data.user }
-        });
+        sessionStorage.setItem("user", JSON.stringify(user));
+        navigate("/home");
       } else {
         toast.error(
           response.data.extraDetails || response.data.message || "Invalid credentials"
