@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "./components/sidebar.jsx";
-import './styles/styles.css';
+import "./styles/styles.css";
 
 function Home() {
   const item = sessionStorage.getItem("user");
   var user = JSON.parse(item);
-  
+
   const [errors, setError] = useState("");
   const navigate = useNavigate();
   const [submissionSuccessful, setSubmissionSuccessful] = useState(false);

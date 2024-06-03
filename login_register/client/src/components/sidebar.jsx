@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
@@ -9,11 +9,21 @@ function Sidebar() {
       </div>
       <nav>
         <ul>
-          <li><Link to="/home">Profile</Link></li>
-          <li><Link to="/home">Start Matching</Link></li>
-          <li><Link to="/match">Your Match</Link></li>
-          <li><Link to="/all-user">Users</Link></li>
-          <li><Link to="/todo">Start Study</Link></li>
+          <li>
+            <Link to="/home">Profile</Link>
+          </li>
+          <li>
+            <Link to="/start-match">Start Matching</Link>
+          </li>
+          <li>
+            <Link to="/match">Your Match</Link>
+          </li>
+          <li>
+            <Link to="/all-user">Users</Link>
+          </li>
+          <li>
+            <Link to="/todo">Start Study</Link>
+          </li>
         </ul>
       </nav>
       <div className="footer">

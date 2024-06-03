@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Sidebar from "./sidebar.jsx";
-import '../styles/styles.css';
+import "../styles/styles.css";
 
 function Todo() {
   const [tasks, setTasks] = useState([]);
