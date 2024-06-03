@@ -1,6 +1,6 @@
 import studentModel from '../models/student-model.js';
 import dotenv from 'dotenv';
-const result = dotenv.config({ path: './server/.env' });
+const result = dotenv.config({ path: './login_register/server/.env' });
 if (result.error) {
   throw result.error;
 }

@@ -1,0 +1,106 @@
+/* General styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.home-container {
+  display: flex;
+  height: 100vh; /* Ensure it takes the full viewport height */
+}
+
+.sidebar {
+  width: 20%;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logo {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  padding: 15px 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  background-color: #575757;
+  display: block;
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #222;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f4f4f4;
+  overflow-y: auto;
+}
+
+.main-content h1 {
+  margin-top: 0;
+}
+
+.main-content input[type="text"] {
+  width: calc(25% - 10px);
+  margin-right: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.main-content button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.main-content button:hover {
+  background-color: #575757;
+}
+
+.main-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.main-content ul li {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-content ul li button {
+  background-color: red;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.main-content ul li button:hover {
+  background-color: darkred;
+}

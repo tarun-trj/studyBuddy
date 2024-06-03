@@ -1,34 +1,24 @@
-import React, { useState } from "react";
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 function Sidebar() {
   return (
     <div className="sidebar">
       <div className="logo">
         <h1>Logo</h1>
       </div>
-      <div className="nav-container">
-        <ul className="nav-links">
-          <li>
-            <a href="/home">Profile</a>
-          </li>
-          <li>
-            <a href="#match">Start Matching</a>
-          </li>
-          <li>
-            <a href="/match">Your Match</a>
-          </li>
-          <li>
-            <a href="/all-user">Users</a>
-          </li>
-          <li>
-            <a href="/todo">Start Study</a>
-          </li>
+      <nav>
+        <ul>
+          <li><Link to="/home">Profile</Link></li>
+          <li><Link to="/home">Start Matching</Link></li>
+          <li><Link to="/match">Your Match</Link></li>
+          <li><Link to="/all-user">Users</Link></li>
+          <li><Link to="/todo">Start Study</Link></li>
         </ul>
-      </div>
-      <div className="timer-container">
-        <div className="timer">
-          <h2>00:30</h2>
-          <p>Time remaining</p>
-        </div>
+      </nav>
+      <div className="footer">
+        <p>00:30</p>
+        <p>Time remaining</p>
       </div>
     </div>
   );

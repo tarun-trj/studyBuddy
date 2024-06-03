@@ -1,13 +1,13 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "./components/sidebar.jsx";
+import './styles/styles.css';
 
 function Home() {
   const [errors, setError] = useState("");
   const navigate = useNavigate();
-  const [submissionSuccessful, setSubmissionSuccessful] = useState(false); // New state for tracking submission success
+  const [submissionSuccessful, setSubmissionSuccessful] = useState(false);
   const location = useLocation();
   const user = location.state?.user;
   const [query, setQuery] = useState({
@@ -18,7 +18,6 @@ function Home() {
   });
 
   if (!user) {
-    // Handle the case when user data is not available
     return <div>Loading...</div>;
   }
 
@@ -34,19 +33,19 @@ function Home() {
     if (errors) {
       console.log("Error logged:", errors);
     }
-  }, [errors]); // This useEffect will run every time `errors` changes.
+  }, [errors]);
 
   const handleTodoSubmit = () => {
-    navigate("/todo"); // Navigate to /todo route
+    navigate("/todo");
   };
 
   const handleDisplaySubmit = () => {
-    navigate("/all-user"); // Navigate to /todo route
+    navigate("/all-user");
   };
 
   const handleMatchSubmit = async (e) => {
     e.preventDefault();
-    const token = sessionStorage.getItem("token"); // Retrieving the token
+    const token = sessionStorage.getItem("token");
     const email = user.email;
     console.log(token);
 
@@ -56,7 +55,7 @@ function Home() {
         { email },
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Include the token in the request header
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -94,7 +93,6 @@ function Home() {
       console.log("no token found");
     }
 
-    // Merge queries into an array, filtering out null or empty values
     const queries = [
       query.query1,
       query.query2,
@@ -106,12 +104,11 @@ function Home() {
 
     if (queries.length === 0) {
       setError("Please enter at least one query.");
-      console.log("Submission blocked: No queries provided."); // Additional log for no input scenario
+      console.log("Submission blocked: No queries provided.");
       setSubmissionSuccessful(false);
-      return; // Exit the function if no queries are provided
+      return;
     }
 
-    // Reset error state before making the API call
     setError("");
 
     try {
@@ -126,32 +123,28 @@ function Home() {
       );
       console.log(response.data);
       setSubmissionSuccessful(true);
-      //navigate('/match', { state: { employees: response.data} });
     } catch (error) {
       setSubmissionSuccessful(false);
       if (error.response) {
-        // Client received an error response (5xx, 4xx)
         setError(
           `Failed to fetch: ${error.response.status} ${error.response.data.message}`
         );
       } else if (error.request) {
-        // The request was made but no response was received
         setError("No response from the server");
       } else {
-        // Something happened in setting up the request that triggered an Error
         setError("Error:  " + error.message);
       }
     }
   };
 
   return (
-    <div>
+    <div className="home-container">
       <Sidebar />
       <div className="main-content">
         <h1>Welcome, {user.name}!</h1>
         <div>
           <p>Email: {user.email}</p>
-          <p>Email: {user.branch}</p>
+          <p>Branch: {user.branch}</p>
           <input
             type="text"
             name="query1"
@@ -159,7 +152,6 @@ function Home() {
             onChange={handleInput}
             placeholder="Enter your query"
           />
-
           <input
             type="text"
             name="query2"
