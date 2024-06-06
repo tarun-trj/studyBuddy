@@ -8,6 +8,7 @@ import matchingRouter from './routes/find-match-router.js'; // Import the new ma
 import { startScheduledTasks } from './controllers/match-controller.js';
 import errorHandler from './middleware/error-middleware.js';
 import allUsersRouter from './controllers/all-user-controller.js';
+import todoRouter from './routes/todo-router.js'
 
 const time = 6000000;
 
@@ -24,6 +25,7 @@ app.use(employeeRouter);
 app.use(subjectRouter);
 app.use(matchingRouter);
 app.use(allUsersRouter);
+app.use(todoRouter);
 
 startScheduledTasks(time);
 

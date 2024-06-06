@@ -7,7 +7,12 @@ const taskSchema = new mongoose.Schema({
   },
   listId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'List'
+    ref: 'List',
+    required: true
+  },
+  completed: {
+    type: Boolean,
+    required: true
   }
 });
 

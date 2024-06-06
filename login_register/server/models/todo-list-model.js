@@ -5,9 +5,8 @@ const listSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Employee', // Assuming you have a User model
+  email: {
+    type: String,
     required: true
   },
   tasks: [{
