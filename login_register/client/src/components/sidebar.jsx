@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 function Sidebar() {
+  const navigate = useNavigate();
+  const handleLogOut = (id) => {
+    sessionStorage.clear();
+    navigate("/login");
+  };
   return (
     <div className="sidebar">
       <div className="logo">
@@ -23,6 +30,9 @@ function Sidebar() {
           </li>
           <li>
             <Link to="/todo">Start Study</Link>
+          </li>
+          <li>
+            <Link to ="/login" onClick={handleLogOut}>Log Out</Link>
           </li>
         </ul>
       </nav>
