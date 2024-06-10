@@ -7,7 +7,9 @@ const studentSchema = new mongoose.Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     branch: { type: String, required: true },
-    semester: { type: String, required: true }
+    semester: { type: String, required: true },
+    subjects: [{ type: String, required: false, default: []}],
+    subNum: { type: Number, required: true, default: 0}
 });
 
 studentSchema.pre("save", async function (next) {

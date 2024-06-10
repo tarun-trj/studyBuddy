@@ -24,7 +24,7 @@ function Home() {
 
   const handleAddTask = () => {
     if (input.trim() !== "") {
-      setTasks([...tasks, { id: Date.now(), text: input }]);
+      setTasks([...tasks, input]);
       setInput("");
     }
   };
@@ -50,14 +50,6 @@ function Home() {
       console.log("Error logged:", errors);
     }
   }, [errors]);
-
-  const handleTodoSubmit = () => {
-    navigate("/todo");
-  };
-
-  const handleDisplaySubmit = () => {
-    navigate("/all-user");
-  };
 
   const handleMatchSubmit = async (e) => {
     e.preventDefault();
@@ -156,8 +148,8 @@ function Home() {
           />
           <button type="submit">Submit</button>
         </form>
-        <button onClick={handleDisplaySubmit}>Display Users</button>
-        <button onClick={handleTodoSubmit}>Todo List</button>
+        <button onClick={() => { navigate("/all-user"); }}>Display Users</button>
+        <button onClick={() => { navigate("/todo"); }}>Todo List</button>
         {errors && <p>{errors}</p>}
       </div>
     </div>
