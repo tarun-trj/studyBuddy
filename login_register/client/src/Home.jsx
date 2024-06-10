@@ -97,8 +97,9 @@ function Home() {
   return (
     <div className="home-container">
       <Sidebar />
+
+      {/* Component to add and remove subjects */}
       <div className="main-content">
-        {/* Todo Component */}
         <h2>Subjects</h2>
         <input
           type="text"
@@ -111,7 +112,7 @@ function Home() {
           Add Subject
         </button>
 
-        <h3>Tasks</h3>
+        <h3>Your Subjects</h3>
         <ul className="list-group">
           {tasks.map((task) => (
             <li key={task.id} className="list-group-item">
