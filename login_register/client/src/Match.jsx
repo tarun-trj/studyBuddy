@@ -10,7 +10,7 @@ function Match() {
     if (!partner) {
         // Handle the case when user data is not available
         return <div>Loading...</div>;
-      }
+    }
     
     return (
         <div>
