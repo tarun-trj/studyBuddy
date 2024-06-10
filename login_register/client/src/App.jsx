@@ -8,6 +8,7 @@ import About from "./About.jsx";
 import AllUser from "./AllUser.jsx";
 import StartMatch from "./StartMatch.jsx";
 import Todo from "./components/todo.jsx";
+import Stopwatch from "./components/stopwatch.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./auth/auth-context.jsx";
 import ProtectedRoute from "./components/protectedRoute.jsx";
@@ -18,6 +19,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<About />}></Route>
+          <Route path="/stopwatch" element={<Stopwatch />}></Route>
           <Route path="/start-match" element={<StartMatch />}></Route>
           <Route path="/all-user" element={<AllUser />}></Route>
           <Route path="/register" element={<Signup />}></Route>

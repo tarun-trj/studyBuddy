@@ -1,4 +1,5 @@
 import React from "react";
+import Timer from "./components/timer";
 
 const App = () => {
   const pageStyles = {
@@ -63,6 +64,7 @@ const App = () => {
         <a href="/all-user" style={pageStyles.link}>
           show everyone
         </a>
+        <Timer />
       </div>
     </div>
   );
