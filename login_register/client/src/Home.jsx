@@ -19,18 +19,49 @@ function Home() {
   });
 
   // Todo component states and handlers
-  const [tasks, setTasks] = useState([]);
+  const [subjects, setSubjects] = useState([]);
   const [input, setInput] = useState("");
 
-  const handleAddTask = () => {
-    if (input.trim() !== "") {
-      setTasks([...tasks, input]);
+  const handleAddsubject = () => {
+    const trimmedInput = input.trim();
+    if (trimmedInput !== "" && !subjects.includes(trimmedInput)) {
+      setSubjects([...subjects, trimmedInput]);
       setInput("");
     }
   };
 
-  const handleDeleteTask = (taskId) => {
-    setTasks(tasks.filter(task => task.id !== taskId));
+  const handleDeletesubject = (subject) => {
+    setSubjects(subjects.filter(t => t !== subject));
+  };
+
+  const handleSaveSubjects = async () => {
+    const email = user.email;
+    const token = sessionStorage.getItem("token");
+
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:3002/save-subjects",
+        { email, subjects: subjects },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        setSubmissionSuccessful(true);
+      } else {
+        setError("Failed to save subjects.");
+      }
+    } catch (err) {
+      if (err.response) {
+        setError(err.response.data.message || "Unknown error");
+      } else {
+        setError("An error occurred while saving subjects.");
+      }
+    }
   };
 
   if (!user) {
@@ -100,17 +131,17 @@ function Home() {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Enter new subject"
         />
-        <button onClick={handleAddTask} className="btn btn-primary mb-3">
+        <button onClick={handleAddsubject} className="btn btn-primary mb-3">
           Add Subject
         </button>
 
         <h3>Your Subjects</h3>
         <ul className="list-group">
-          {tasks.map((task) => (
-            <li key={task.id} className="list-group-item">
-              {task.text}
+          {subjects.map((subject, index) => (
+            <li key={index} className="list-group-item">
+              {subject}
               <button
-                onClick={() => handleDeleteTask(task.id)}
+                onClick={() => handleDeletesubject(subject)}
                 className="btn btn-danger btn-sm float-end"
               >
                 Delete
@@ -118,6 +149,10 @@ function Home() {
             </li>
           ))}
         </ul>
+
+        <button onClick={handleSaveSubjects} className="btn btn-success mt-3">
+          Save Subjects
+        </button>
 
         {/* Rest of Home Component */}
         <h1>Welcome {user.name}</h1>
@@ -151,6 +186,7 @@ function Home() {
         <button onClick={() => { navigate("/all-user"); }}>Display Users</button>
         <button onClick={() => { navigate("/todo"); }}>Todo List</button>
         {errors && <p>{errors}</p>}
+        {submissionSuccessful && <p>Subjects saved successfully!</p>}
       </div>
     </div>
   );
