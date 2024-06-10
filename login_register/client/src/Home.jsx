@@ -79,10 +79,8 @@ function Home() {
 
       console.log(response);
       if (response.data.emailRes) {
-        navigate("/match", {
-          replace: true,
-          state: { partner: response.data.emailRes },
-        });
+        sessionStorage.setItem("partner", response.data.emailRes);
+        navigate("/match");
       } else {
         setError("No partner found for this email.");
       }

@@ -4,13 +4,12 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 function Match() {
     const [error, setError] = useState('');
-    const location = useLocation();
-    const partner = location.state?.partner;
+    const partner = sessionStorage.getItem("partner");
 
     if (!partner) {
         // Handle the case when user data is not available
         return <div>Loading...</div>;
-    }
+      }
     
     return (
         <div>
