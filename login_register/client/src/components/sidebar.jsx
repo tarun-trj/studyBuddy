@@ -39,7 +39,6 @@ function Sidebar() {
       </nav>
       <div className="footer">
         <p><Timer /></p>
-        <p>Time remaining</p>
       </div>
     </div>
   );

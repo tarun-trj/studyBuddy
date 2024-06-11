@@ -11,7 +11,7 @@ const Timer = () => {
             const remainingMinutes = 29 - (minutes % 30);
             const remainingSeconds = 59 - seconds;
 
-            setTimeRemaining(`${remainingMinutes.toString().padStart(2, '0')} minutes ${remainingSeconds.toString().padStart(2, '0')} seconds`);
+            setTimeRemaining(`${remainingMinutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')} `);
         };
 
         updateTimer();
@@ -21,9 +21,9 @@ const Timer = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Timer</h1>
-            <p>Time Remaining to Next Half Hour: {timeRemaining}</p>
+        <div className = "timer">
+            <div className = "text"> Next matching in: </div> 
+            <div className = "time">{timeRemaining}</div>
         </div>
     );
 };
