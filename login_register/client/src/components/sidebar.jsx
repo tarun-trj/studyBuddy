@@ -30,7 +30,7 @@ function Sidebar() {
             <Link to="/all-user">Users</Link>
           </li>
           <li>
-            <Link to="/stopwatch">Start Study</Link>
+            <Link to="/todo">Start Study</Link>
           </li>
           <li>
             <Link to ="/login" onClick={handleLogOut}>Log Out</Link>

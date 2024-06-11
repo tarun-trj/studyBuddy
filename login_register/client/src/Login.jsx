@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import "./styles/loginstyles.css"; // Import login styles
 
 function Login() {
   const [user, setUser] = useState({
@@ -60,38 +61,36 @@ function Login() {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
-      <div className="bg-white p-3 rounded w-25">
+    <div className="login-container">
+      <div className="login-form">
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label"><strong>Email</strong></label>
+            <label htmlFor="email"><strong>Email</strong></label>
             <input
               type="email"
               id="email"
               placeholder="Enter Email"
               autoComplete="off"
               name="email"
-              className="form-control"
               onChange={handleInput}
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label"><strong>Password</strong></label>
+            <label htmlFor="password"><strong>Password</strong></label>
             <input
               type="password"
               id="password"
               placeholder="Enter Password"
               name="password"
-              className="form-control"
               onChange={handleInput}
             />
           </div>
-          <button type="submit" className="btn btn-success w-100">
+          <button type="submit" className="btn btn-success">
             Login
           </button>
-          <p className="mt-3">Don't have an account?</p>
-          <Link to="/register" className="btn btn-light border w-100">
+          <p>Don't have an account?</p>
+          <Link to="/register" className="btn btn-light border">
             Sign Up
           </Link>
         </form>
