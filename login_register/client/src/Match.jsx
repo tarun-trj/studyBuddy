@@ -4,12 +4,52 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 function Match() {
     const [error, setError] = useState('');
-    const partner = sessionStorage.getItem("partner");
+    const partner = sessionStorage.getItem('partner');
 
-    if (!partner) {
-        // Handle the case when user data is not available
-        return <div>Loading...</div>;
-      }
+    useEffect(() => {
+        if(!partner) {
+            const fetchPartner = async () => {
+                try {
+                    const response = await axios.post(
+                        "http://127.0.0.1:3002/find",
+                        { email },
+                        {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            "Content-Type": "application/json",
+                        },
+                        }
+                    );
+            
+                    console.log(response);
+                    if (response.data.emailRes) {
+                        sessionStorage.setItem("partner", response.data.emailRes);
+                        partner = response.data.emailRes;
+                    } else {
+                        if (sessionStorage.getItem("partner") !== null) {
+                            sessionStorage.removeItem("partner");
+                        }
+                        setError("No partner found for this email.");
+                    }
+                } catch (err) {
+                    if (err.response) {
+                        console.log("Error Status:" + err.response.status);
+                        setError(err.response.data.message || "Unknown error");
+                    } else {
+                        setError("Failed to fetch partner email. Please try again later.");
+                    }
+                }
+            };
+        
+            fetchPartner();
+        }
+    }, []);
+
+    if(!partner) {
+        return(
+            <div>No partner</div>
+        )
+    }
     
     return (
         <div>

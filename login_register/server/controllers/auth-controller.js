@@ -1,6 +1,7 @@
 import studentModel from '../models/student-model.js';
 import dotenv from 'dotenv';
-const result = dotenv.config({ path: './login_register/server/.env' });
+const result = dotenv.config({ path: './.env' });
+
 if (result.error) {
   throw result.error;
 }
@@ -35,7 +36,6 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     const userExist = await studentModel.findOne({ email });
-    //console.log(userExist);
 
     if (!userExist) {
       return res.status(400).json({ message: "Invalid Credentials " });
