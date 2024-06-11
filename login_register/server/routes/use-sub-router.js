@@ -1,12 +1,11 @@
 import { userSubController } from "../controllers/user-sub-controller.js";
 import express from 'express';
-import studentModel from "../models/student-model.js";
 
-const router = express.router();
+const router = express.Router();
 
-router.route("/user-subs")
-    .delete(userSubController.delSub)
-    .get(userSubController.getSub)
-    .post(userSubController.addSub);
+router.route("/user-subject")
+    .post(userSubController.addSub)
+    .delete(userSubController.deleteSub)
+    .get(userSubController.getSub);
 
 export default router;

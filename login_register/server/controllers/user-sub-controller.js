@@ -10,9 +10,14 @@ const addSub = async (req, res) => {
         }
 
         // Find the student by ID and update their subjects
-        const student = await studentModel.findOne({email: email});
+        const student = await studentModel.findOne({ email: email });
         if (!student) {
             return res.status(404).send({ message: "Student not found." });
+        }
+
+        // Check if the subject already exists
+        if (student.subjects.includes(subject)) {
+            return res.status(400).send({ message: "Subject already exists." });
         }
 
         // Add the new subject
@@ -28,6 +33,7 @@ const addSub = async (req, res) => {
         res.status(500).send({ message: "Internal Server Error." });
     }
 };
+
 
 const deleteSub = async (req, res) => {
     try {
@@ -63,21 +69,26 @@ const deleteSub = async (req, res) => {
     }
 };
 
-const getSub = async(req, res) => {
+const getSub = async (req, res) => {
+    const email = req.headers['user-email'];
+
+    if (!email) {
+        return res.status(400).json({ message: "User email header is missing" });
+    }
+
     try {
-        const {email} = req.body;
-        
-        if(!email) {
-            return res.status(400).send({ message: "Student email." });
+        const list = await studentModel.findOne({ email }).populate('subjects');
+        if (!list) {
+            return res.status(404).json({ message: "Student not found" });
         }
 
-        const student = studentModel.findOne({email : email});
-        res.status(200).send({ message: "Student and subjects found"}, student.subjects);
+        res.status(200).json({ subjects: list.subjects });
     } catch (error) {
-        console.error('Error deleting subject:', error);
-        res.status(500).send({ message: "Internal Server Error." });
+        console.error("Error fetching subjects:", error);
+        res.status(500).json({ message: "Internal server error" });
     }
-}
+};
+
 
 
 const userSubController = { addSub, deleteSub, getSub };

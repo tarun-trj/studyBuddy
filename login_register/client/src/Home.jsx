@@ -5,76 +5,72 @@ import Sidebar from "./components/sidebar.jsx";
 import "./styles/styles.css";
 
 function Home() {
-  const item = sessionStorage.getItem("user");
-  var user = JSON.parse(item);
-
+  const user = JSON.parse(sessionStorage.getItem("user"));
   const [errors, setError] = useState("");
   const navigate = useNavigate();
-  const [submissionSuccessful, setSubmissionSuccessful] = useState(false);
-  const [query, setQuery] = useState({
-    query1: "",
-    query2: "",
-    query3: "",
-    query4: "",
-  });
-
-  // Todo component states and handlers
-  const [subjects, setSubjects] = useState([]);
-  const [input, setInput] = useState("");
-
-  const handleAddsubject = () => {
-    const trimmedInput = input.trim();
-    if (trimmedInput !== "" && !subjects.includes(trimmedInput)) {
-      setSubjects([...subjects, trimmedInput]);
-      setInput("");
-    }
-  };
-
-  const handleDeletesubject = (subject) => {
-    setSubjects(subjects.filter(t => t !== subject));
-  };
-
-  const handleSaveSubjects = async () => {
-    const email = user.email;
-    const token = sessionStorage.getItem("token");
-
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:3002/save-subjects",
-        { email, subjects: subjects },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        setSubmissionSuccessful(true);
-      } else {
-        setError("Failed to save subjects.");
-      }
-    } catch (err) {
-      if (err.response) {
-        setError(err.response.data.message || "Unknown error");
-      } else {
-        setError("An error occurred while saving subjects.");
-      }
-    }
-  };
 
   if (!user) {
     return <div>Loading...</div>;
   }
 
-  const handleInput = (e) => {
-    const { name, value } = e.target;
-    setQuery((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  // Todo component states and handlers
+  const [subjects, setSubjects] = useState([]);
+  const [input, setInput] = useState("");
+
+  const handleAddSubject = async () => {
+    const email = user.email;
+    const trimmedInput = input.trim();
+
+    if (trimmedInput === "") {
+        console.log("Input cannot be empty.");
+        return;
+    }
+
+    if (subjects.includes(trimmedInput)) {
+        console.log("Subject already exists.");
+        return;
+    }
+
+    try {
+        const response = await fetch('http://127.0.0.1:3002/user-subject', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, subject: trimmedInput }),
+        });
+
+        const data = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(data.message || 'Something went wrong');
+        }
+
+        setSubjects([...subjects, trimmedInput]);
+        setInput("");
+    } catch (error) {
+        console.log("Error: " + error.message);
+    }
   };
+
+  const handleDeleteSubject = async (subject) => {
+    const email = user.email;
+
+    try {
+      const response = await fetch('http://127.0.0.1:3002/user-subject', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({email, subject}),
+      });
+
+      setSubjects(subjects.filter(t => t !== subject));
+    } catch (error) {
+      console.log("Error: " + error);
+    }
+  };
+
 
   useEffect(() => {
     if (errors) {
@@ -82,40 +78,24 @@ function Home() {
     }
   }, [errors]);
 
-  const handleMatchSubmit = async (e) => {
-    e.preventDefault();
-    const token = sessionStorage.getItem("token");
-    const email = user.email;
-    console.log(token);
+  useEffect(() => {
+    const fetchSubjects = async () => {
+        try {
+            const response = await axios.get('http://127.0.0.1:3002/user-subject', {
+                headers: {
+                    'User-Email': user.email,
+                },
+            });
 
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:3002/find",
-        { email },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
+            setSubjects(response.data.subjects);
+        } catch (error) {
+            console.error("Error fetching subjects:", error);
+            setError("Failed to fetch subjects. Please try again later.");
         }
-      );
+    };
 
-      console.log(response);
-      if (response.data.emailRes) {
-        sessionStorage.setItem("partner", response.data.emailRes);
-        navigate("/match");
-      } else {
-        setError("No partner found for this email.");
-      }
-    } catch (err) {
-      if (err.response) {
-        console.log("Error Status:" + err.response.status);
-        setError(err.response.data.message || "Unknown error");
-      } else {
-        setError("Failed to fetch partner email. Please try again later.");
-      }
-    }
-  };
+    fetchSubjects();
+  }, []);
 
   return (
     <div className="home-container">
@@ -123,25 +103,14 @@ function Home() {
 
       {/* Component to add and remove subjects */}
       <div className="main-content">
+        <h1>Welcome {user.name}</h1>
         <h2>Subjects</h2>
-        <input
-          type="text"
-          className="form-control mb-2"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Enter new subject"
-        />
-        <button onClick={handleAddsubject} className="btn btn-primary mb-3">
-          Add Subject
-        </button>
-
-        <h3>Your Subjects</h3>
         <ul className="list-group">
           {subjects.map((subject, index) => (
             <li key={index} className="list-group-item">
               {subject}
               <button
-                onClick={() => handleDeletesubject(subject)}
+                onClick={() => handleDeleteSubject(subject)}
                 className="btn btn-danger btn-sm float-end"
               >
                 Delete
@@ -149,44 +118,23 @@ function Home() {
             </li>
           ))}
         </ul>
-
-        <button onClick={handleSaveSubjects} className="btn btn-success mt-3">
-          Save Subjects
+        
+        <div>
+        <input
+          type="text"
+          className="form-control mb-2"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Enter new subject"
+        />
+        <button onClick={handleAddSubject} className="btn btn-primary mb-3">
+          Add Subject
         </button>
+        </div>
 
-        {/* Rest of Home Component */}
-        <h1>Welcome {user.name}</h1>
-        <form onSubmit={handleMatchSubmit}>
-          <input
-            type="text"
-            name="query1"
-            value={query.query1}
-            onChange={handleInput}
-          />
-          <input
-            type="text"
-            name="query2"
-            value={query.query2}
-            onChange={handleInput}
-          />
-          <input
-            type="text"
-            name="query3"
-            value={query.query3}
-            onChange={handleInput}
-          />
-          <input
-            type="text"
-            name="query4"
-            value={query.query4}
-            onChange={handleInput}
-          />
-          <button type="submit">Submit</button>
-        </form>
         <button onClick={() => { navigate("/all-user"); }}>Display Users</button>
         <button onClick={() => { navigate("/todo"); }}>Todo List</button>
         {errors && <p>{errors}</p>}
-        {submissionSuccessful && <p>Subjects saved successfully!</p>}
       </div>
     </div>
   );
