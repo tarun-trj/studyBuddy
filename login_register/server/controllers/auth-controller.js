@@ -7,7 +7,7 @@ if (result.error) {
 
 const register = async (req, res) => {
   const { name, email, password, branch, semester } = req.body;
-
+  
   try {
     const userExist = await studentModel.findOne({ email: email });
 
@@ -15,7 +15,7 @@ const register = async (req, res) => {
       throw new Error('UserAlreadyExists');
     }
 
-    const employee = await studentModel.create({ name, email, password, branch, semester });
+    const employee = await studentModel.create({ name: name, email: email, password: password, branch: branch, semester: semester });
     res.json(employee);
   } catch (err) {
     if (err.message === 'UserAlreadyExists') {
