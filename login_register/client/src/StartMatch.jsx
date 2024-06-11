@@ -7,7 +7,8 @@ function Subjects() {
   const user = JSON.parse(sessionStorage.getItem("user"));
   const [errors, setError] = useState("");
   const [subjects, setSubjects] = useState([]);
-  
+  const [valid, setValid] = useState(false);
+
   useEffect(() => {
     const fetchSubjects = async () => {
         try {
@@ -84,6 +85,11 @@ function Subjects() {
     const email = user.email;
     
     try {
+
+      if(checkedSubjects.length < 1) {
+        setValid(true);
+        return;
+      }
       const response = await axios.post("http://127.0.0.1:3002/match", {
           email,
           subjects: checkedSubjects
@@ -99,6 +105,8 @@ function Subjects() {
       }
 
       console.log(response.data);
+      setValid(false);
+
     } catch (error) {
       console.log("Error message" + error);
     }
@@ -125,6 +133,7 @@ function Subjects() {
           ))}
         </ul>
       <button onClick={handleMatchSubmit}>Enter Matching</button>
+      {valid && <p style={{ color: 'red' }}>Select at least one subject</p>}
       </div>
 
     </div>

@@ -132,8 +132,6 @@ function Home() {
         </button>
         </div>
 
-        <button onClick={() => { navigate("/all-user"); }}>Display Users</button>
-        <button onClick={() => { navigate("/todo"); }}>Todo List</button>
         {errors && <p>{errors}</p>}
       </div>
     </div>
