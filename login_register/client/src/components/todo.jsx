@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "./sidebar.jsx";
 import '../styles/styles.css';
 import axios from 'axios';
+import Stopwatch from "./stopwatch.jsx";
 
 function Todo() {
   const [tasks, setTasks] = useState([]);
@@ -100,6 +101,7 @@ function Todo() {
   return (
     <div className="home-container">
       <Sidebar />
+      <Stopwatch />
       <div className="main-content">
         <h2>Todo List</h2>
         <input

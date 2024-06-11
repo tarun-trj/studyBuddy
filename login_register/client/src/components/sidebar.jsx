@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Timer from "./timer";
 
 
 function Sidebar() {
@@ -37,8 +38,7 @@ function Sidebar() {
         </ul>
       </nav>
       <div className="footer">
-        <p>00:30</p>
-        <p>Time remaining</p>
+        <p><Timer /></p>
       </div>
     </div>
   );

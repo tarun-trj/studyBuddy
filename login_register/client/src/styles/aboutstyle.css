@@ -1,0 +1,99 @@
+/* Reset default browser styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  /* Container for the main content */
+  .container {
+    max-width: 800px;
+    margin: 20px auto; /* Center the container with some top margin */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header style */
+  .header {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px; /* Increase font size for the header */
+  }
+  
+  /* Content area style */
+  .content {
+    line-height: 1.6;
+    font-size: 16px;
+    color: #666;
+  }
+  
+  /* Highlighted text */
+  .highlight {
+    color: #0056b3;
+    font-weight: bold;
+  }
+  
+  /* Links style */
+  .link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: text-decoration 0.3s; /* Smooth transition for text-decoration */
+  }
+  
+  /* Hover effect for links */
+  .link:hover {
+    text-decoration: underline;
+  }
+
+/* CSS for the navigation bar */
+.navbar {
+    background-color: #333;
+    padding: 10px 20px;
+  }
+  
+  .navbar .container {
+    display: flex;
+    justify-content: flex-end; /* Align links to the right */
+  }
+  
+  .nav-link,
+  .contact-btn { /* Add the contact-btn class to the button */
+    color: #000000;
+    text-decoration: none;
+    margin-right: 20px;
+    border: none; /* Remove default border */
+    background: none; /* Remove default background */
+    cursor: pointer; /* Add pointer cursor on hover */
+  }
+  
+  /* Hover effect for links and buttons */
+  .nav-link:hover,
+  .contact-btn:hover { /* Apply the hover effect to both links and buttons */
+    color: #ffc107; /* Change color on hover */
+  }
+  
+/* Timer styles */
+.timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .timer .text {
+    margin-right: 10px;
+    color: #ffffff;
+  }
+  
+  .timer .time {
+    font-family: 'Digital', sans-serif; /* Use a digital font */
+    font-size: 36px; /* Increase font size */
+    color: #ffffff; /* Color of the timer */
+    letter-spacing: 4px; /* Add letter spacing for better readability */
+  }
+  
