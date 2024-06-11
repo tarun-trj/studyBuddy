@@ -6,6 +6,7 @@ function Match() {
     const [error, setError] = useState('');
     const [partner, setPartner] = useState(sessionStorage.getItem('partner'));
     const user = JSON.parse(sessionStorage.getItem("user"));
+    const token = sessionStorage.getItem("token");
     
     useEffect(() => {
         const fetchPartner = async () => {
@@ -17,7 +18,8 @@ function Match() {
                     { email },
                     {
                         headers: {
-                            "Content-Type": "application/json"
+                            Authorization: `Bearer ${token}`,
+                            "Content-Type": "application/json",
                         },
                     }
                 );
@@ -43,7 +45,7 @@ function Match() {
         if (!partner) {
             fetchPartner();
         }
-    }, [partner, email, token]);
+    }, []);
 
     if (!partner) {
         return (
