@@ -12,6 +12,7 @@ import Stopwatch from "./components/stopwatch.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./auth/auth-context.jsx";
 import ProtectedRoute from "./components/protectedRoute.jsx";
+import ResetPassword from "./Reset.jsx";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/match" element={<Match />}></Route>
+          <Route path="/reset" element={<ResetPassword />}></Route>
           <Route
             path="/todo"
             element={
