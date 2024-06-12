@@ -34,7 +34,7 @@ const requestPasswordReset = async (req, res) => {
       service: 'Gmail',
       auth: {
         user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASSWORD,
+        pass: process.env.A,
       },
     });
 
@@ -42,7 +42,7 @@ const requestPasswordReset = async (req, res) => {
       from: process.env.EMAIL,
       to: user.email,
       subject: 'Password Reset Request',
-      text: `You requested a password reset. Click the link to reset your password: http://localhost:3000/reset-password/${token}`,
+      text: `You requested a password reset. Click the link to reset your password: http://localhost:5173/reset-password/${token}`,
     };
 
     await transporter.sendMail(mailOptions);
