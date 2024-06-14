@@ -29,32 +29,28 @@ function Login() {
           "Content-Type": "application/json",
         },
       });
-
+  
       console.log("login response", response.data);
-
+  
       if (response.status === 200) {
-        toast.success("Login successful");
-        const user = response.data.user;
+        const { token, user } = response.data;
         // Assuming response.data contains a token and user information
-        storeTokenInSS(response.data.token);
+        storeTokenInSS(token);
         sessionStorage.setItem("user", JSON.stringify(user));
         navigate("/home");
       } else {
-        toast.error(
-          response.data.extraDetails || response.data.message || "Invalid credentials"
-        );
+        console.error("Login failed:", response.data);
       }
     } catch (error) {
       if (error.response) {
-        // Handle responses from the server (e.g., validation errors)
-        toast.error(error.response.data.message || "An error occurred");
+        console.error("Server error:", error.response.data.message);
       } else {
-        // Handle other errors (e.g., network error)
-        toast.error("Network error, please try again");
+        console.error("Network error:", error.message);
       }
       console.error("Login error", error);
     }
   };
+  
 
   const storeTokenInSS = (token) => {
     sessionStorage.setItem('token', token);

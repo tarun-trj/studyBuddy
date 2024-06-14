@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const ResetPassword = () => {
+const ForgotReq = () => {
   const [email, setEmail] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3002/reset', { email });
+      const response = await axios.post('http://localhost:3002/forgot-password', { email });
 
       if (response.status === 200) {
         toast.success('Password reset email sent');
@@ -38,4 +38,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default ForgotReq;
