@@ -81,3 +81,14 @@ body, html {
 .small-input {
   width: 200px; /* Adjust the width as needed */
 }
+.stopwatch-container {
+  position: fixed;
+  bottom: 20px; /* Adjust this value to move it up or down */
+  right: 20px; /* Adjust this value to move it left or right */
+  z-index: 1000; /* Ensure it appears above other content */
+}
+
+.stop{
+  transform: scale(2);
+}
+

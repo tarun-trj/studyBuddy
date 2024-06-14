@@ -101,7 +101,6 @@ function Todo() {
   return (
     <div className="home-container">
       <Sidebar />
-      <Stopwatch />
       <div className="main-content">
         <h2>Todo List</h2>
         <input
@@ -157,7 +156,8 @@ function Todo() {
           ))}
         </ul> */}
       </div>
-      <button onClick={() => console.log(tasks)}>chec</button>
+      
+      <Stopwatch />
     </div>
   );
 }

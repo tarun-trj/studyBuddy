@@ -34,13 +34,56 @@ const Stopwatch = () => {
         return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     };
 
+    const stopwatchStyles = {
+        container: {
+            backgroundColor: '#333',
+            color: '#fff',
+            padding: '10px',  // Decreased padding to make it smaller
+            borderRadius: '10px',
+            textAlign: 'center',
+            fontFamily: 'Courier, monospace',
+            width: '350px',  // Decreased width
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            zIndex: 1000,
+        },
+        time: {
+            fontSize: '3.5em',  // Increased font size for larger digits
+            margin: '10px 0',
+        },
+        button: {
+            backgroundColor: '#555',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '5px',
+            padding: '20px', // Increased padding for square shape
+            margin: '5px',
+            cursor: 'pointer',
+            width: '60px', // Set fixed width for square shape
+            height: '60px', // Set fixed height for square shape
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+    };
+
     return (
-        <div>
+        <div style={stopwatchStyles.container}>
             <h1>Stopwatch</h1>
-            <p>Time Elapsed: {formatTime(time)}</p>
-            <button onClick={startTimer}>Start</button>
-            <button onClick={stopTimer}>Stop</button>
-            <button onClick={resetTimer}>Reset</button>
+            <p style={stopwatchStyles.time}>{formatTime(time)}</p>
+            <button style={stopwatchStyles.button} onClick={startTimer}>
+                {isRunning ? (
+                    <span>&#10073;&#10073;</span>
+                ) : (
+                    <span>&#9654;</span>
+                )}
+            </button>
+            <button style={stopwatchStyles.button} onClick={stopTimer}>
+                <span>&#9724;</span> 
+            </button>
+            <button style={stopwatchStyles.button} onClick={resetTimer}>
+                <span>&#8634;</span> 
+            </button>
         </div>
     );
 };
