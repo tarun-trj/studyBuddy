@@ -10,6 +10,7 @@ import errorHandler from './middleware/error-middleware.js';
 import allUsersRouter from './controllers/all-user-controller.js';
 import todoRouter from './routes/todo-router.js';
 import userSubRouter from './routes/use-sub-router.js';
+import pwRouter from './routes/password-route.js'
 const time = 6000000;
 
 const app = express();
@@ -27,6 +28,7 @@ app.use(matchingRouter);
 app.use(allUsersRouter);
 app.use(todoRouter);
 app.use(userSubRouter);
+app.use(pwRouter);
 
 startScheduledTasks(time);
 

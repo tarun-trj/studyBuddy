@@ -38,7 +38,7 @@ function Sidebar() {
         </ul>
       </nav>
       <div className="footer">
-        <p><Timer /></p>
+        <Timer />
       </div>
     </div>
   );
