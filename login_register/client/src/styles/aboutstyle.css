@@ -1,99 +1,113 @@
 /* Reset default browser styles */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-  }
-  
-  /* Container for the main content */
-  .container {
-    max-width: 800px;
-    margin: 20px auto; /* Center the container with some top margin */
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Header style */
-  .header {
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 28px; /* Increase font size for the header */
-  }
-  
-  /* Content area style */
-  .content {
-    line-height: 1.6;
-    font-size: 16px;
-    color: #666;
-  }
-  
-  /* Highlighted text */
-  .highlight {
-    color: #0056b3;
-    font-weight: bold;
-  }
-  
-  /* Links style */
-  .link {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-    transition: text-decoration 0.3s; /* Smooth transition for text-decoration */
-  }
-  
-  /* Hover effect for links */
-  .link:hover {
-    text-decoration: underline;
-  }
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Background and styling specific to the about page */
+.about-page {
+  background-color: #f8f9fa;
+  background-image: url("../images/aboutImg.jpg");
+  background-size: cover; /* Ensure the background image covers the entire container */
+  background-position: center top 100px; /* Center the background image horizontally and shift it 100px down from the top */
+  min-height: 100vh; /* Set minimum height to cover the viewport */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container for the main content */
+.about-page .container {
+  max-width: 800px;
+  margin: 20px auto; /* Center the container with some top margin */
+  padding: 20px;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Semi-transparent white background */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Header style */
+.about-page .header {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px; /* Increase font size for the header */
+}
+
+/* Content area style */
+.about-page .content {
+  line-height: 1.6;
+  font-size: 16px;
+  color: #666;
+}
+
+/* Highlighted text */
+.about-page .highlight {
+  color: #0056b3;
+  font-weight: bold;
+}
+
+/* Links style */
+.about-page .link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: text-decoration 0.3s; /* Smooth transition for text-decoration */
+}
+
+/* Hover effect for links */
+.about-page .link:hover {
+  text-decoration: underline;
+}
 
 /* CSS for the navigation bar */
-.navbar {
-    background-color: #333;
-    padding: 10px 20px;
-  }
-  
-  .navbar .container {
-    display: flex;
-    justify-content: flex-end; /* Align links to the right */
-  }
-  
-  .nav-link,
-  .contact-btn { /* Add the contact-btn class to the button */
-    color: #000000;
-    text-decoration: none;
-    margin-right: 20px;
-    border: none; /* Remove default border */
-    background: none; /* Remove default background */
-    cursor: pointer; /* Add pointer cursor on hover */
-  }
-  
-  /* Hover effect for links and buttons */
-  .nav-link:hover,
-  .contact-btn:hover { /* Apply the hover effect to both links and buttons */
-    color: #ffc107; /* Change color on hover */
-  }
-  
+.about-page .navbar {
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+.about-page .navbar .container {
+  display: flex;
+  justify-content: flex-end; /* Align links to the right */
+}
+
+.about-page .nav-link,
+.about-page .contact-btn {
+  color: #000000;
+  text-decoration: none;
+  margin-right: 20px;
+  border: none; /* Remove default border */
+  background: none; /* Remove default background */
+  cursor: pointer; /* Add pointer cursor on hover */
+}
+
+/* Hover effect for links and buttons */
+.about-page .nav-link:hover,
+.about-page .contact-btn:hover {
+  color: #ffc107; /* Change color on hover */
+}
+
 /* Timer styles */
-.timer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .timer .text {
-    margin-right: 10px;
-    color: #ffffff;
-  }
-  
-  .timer .time {
-    font-family: 'Digital', sans-serif; /* Use a digital font */
-    font-size: 36px; /* Increase font size */
-    color: #ffffff; /* Color of the timer */
-    letter-spacing: 4px; /* Add letter spacing for better readability */
-  }
-  
+.about-page .timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.about-page .timer .text {
+  margin-right: 10px;
+  color: #ffffff;
+}
+
+.about-page .timer .time {
+  font-family: "Digital", sans-serif; /* Use a digital font */
+  font-size: 36px; /* Increase font size */
+  color: #ffffff; /* Color of the timer */
+  letter-spacing: 4px; /* Add letter spacing for better readability */
+}

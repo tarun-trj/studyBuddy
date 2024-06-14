@@ -9,15 +9,19 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="about-page">
       {/* Navigation bar */}
       <nav className="navbar">
         <div className="container">
-
-          <a href="/login" className="nav-link">Login</a>
-          <a href="/register" className="nav-link">Register</a>
-          <button className="contact-btn" onClick={showContactInfo}>Contact Us</button>
-          <a href="/developers" className="nav-link">Developers</a>
+          <a href="/login" className="nav-link">
+            Login
+          </a>
+          <a href="/register" className="nav-link">
+            Register
+          </a>
+          <button className="contact-btn" onClick={showContactInfo}>
+            Contact Us
+          </button>
         </div>
         <Timer />
       </nav>
@@ -27,20 +31,29 @@ const App = () => {
         <h1 className="header">About Study Buddy Finder</h1>
         <div className="content">
           <p>
-            Hello! Welcome to <span className="highlight">Study Buddy Finder</span>, a platform dedicated to helping students like you find the perfect study partner for your academic journey.
+            Hello! Welcome to{" "}
+            <span className="highlight">Study Buddy Finder</span>, a platform
+            designed by students from IIT Guwahati. Our project combines
+            innovative features like a todo list, solo study mode, and robust
+            authorization tokens to ensure a secure and personalized study
+            experience.
           </p>
           <p>
-            Our mission is to connect students from around the world to enhance collaborative learning and foster educational support through peer interaction. Whether you are preparing for exams, tackling complex projects, or simply seeking a motivational study group, you've come to the right place.
+            Our mission is to connect IIT Guwahati students, fostering
+            collaborative learning and support through peer interaction. Whether
+            you're preparing for exams, working on complex projects, or seeking
+            a motivational study group, Study Buddy Finder is here to help.
           </p>
           <p>
-            Founded by [Your Name] in [Year], Study Buddy Finder has grown from a small idea into a thriving community of learners. Our platform allows you to connect with peers who have similar academic interests and schedules.
+            Founded by{" "}
+            <span className="highlight">
+              Tarun Raj, Udbhav Gupta, and Tanush Reddy Kolagatla
+            </span>
+            , Study Buddy Finder has evolved into a vibrant community. Our
+            platform allows you to connect with peers who share your academic
+            interests and schedules.
           </p>
-          <p>
-            Ready to join our community? Simply <a href="/login" className="link">log in</a> or <a href="/register" className="link">register</a> to start finding your study buddies today.
-          </p>
-          <p>
-            <a href="/all-user" className="link">Show Everyone</a>
-          </p>
+          <p>Trust the algorithm and join our community today! </p>
         </div>
       </div>
     </div>
