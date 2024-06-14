@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Sidebar from './components/sidebar.jsx';
+import "./styles/styles.css";
 
 function Match() {
     const [error, setError] = useState('');
@@ -54,9 +56,12 @@ function Match() {
     }
 
     return (
-        <div>
-            <h1>Find Your Partner's Email</h1>
-            <p>Partner Email: {partner}</p>
+        <div className = "homes">
+            <Sidebar />
+            <div>
+                <h1>Find Your Partner's Email</h1>
+                <p>Partner Email: {partner}</p>
+            </div>
             {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
     );

@@ -1,106 +1,83 @@
-/* General styles */
+/* styles/styles.css */
 body, html {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  height: 100%;
 }
 
-.home-container {
+.home-container, .match-container {
   display: flex;
-  height: 100vh; /* Ensure it takes the full viewport height */
+  height: 100vh;
+}
+
+.homes{
+  display: flex;
+  height: 100vh;
+
 }
 
 .sidebar {
-  width: 20%;
+  width: 250px;
   background-color: #333;
-  color: #fff;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.logo {
+.sidebar .logo {
   padding: 20px;
-  text-align: center;
-  font-size: 1.5em;
 }
 
-nav ul {
-  list-style-type: none;
+.sidebar nav ul {
+  list-style: none;
   padding: 0;
   margin: 0;
 }
 
-nav ul li {
-  padding: 15px 20px;
+.sidebar nav ul li {
+  padding: 10px 20px;
 }
 
-nav ul li a {
-  color: #fff;
+.sidebar nav ul li a {
+  color: white;
   text-decoration: none;
 }
 
-nav ul li a:hover {
-  background-color: #575757;
-  display: block;
-}
-
-.footer {
+.sidebar .footer {
   padding: 20px;
+  background-color: #444;
   text-align: center;
-  background-color: #222;
 }
 
 .main-content {
   flex: 1;
   padding: 20px;
-  background-color: #f4f4f4;
-  overflow-y: auto;
+  background-color: #ffffff;
 }
 
-.main-content h1 {
-  margin-top: 0;
+.list-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  border-radius: 20px;
 }
 
-.main-content input[type="text"] {
-  width: calc(25% - 10px);
-  margin-right: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.main-content button {
-  padding: 10px 20px;
-  margin-right: 10px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.main-content button:hover {
-  background-color: #575757;
-}
-
-.main-content ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.main-content ul li {
-  padding: 10px 0;
+.list-group-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #f9f9f9;
 }
 
-.main-content ul li button {
-  background-color: red;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  padding: 5px 10px;
+/* New CSS for spacing */
+.add-subject {
+  margin-top: 20px; /* Adjust this value as needed */
 }
 
-.main-content ul li button:hover {
-  background-color: darkred;
+.small-input {
+  width: 200px; /* Adjust the width as needed */
 }

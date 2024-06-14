@@ -98,43 +98,45 @@ function Home() {
   }, []);
 
   return (
-    <div className="home-container">
-      <Sidebar />
 
-      {/* Component to add and remove subjects */}
-      <div className="main-content">
-        <h1>Welcome {user.name}</h1>
-        <h2>Subjects</h2>
-        <ul className="list-group">
-          {subjects.map((subject, index) => (
-            <li key={index} className="list-group-item">
-              {subject}
-              <button
-                onClick={() => handleDeleteSubject(subject)}
-                className="btn btn-danger btn-sm float-end"
-              >
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
-        
-        <div>
-        <input
-          type="text"
-          className="form-control mb-2"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Enter new subject"
-        />
-        <button onClick={handleAddSubject} className="btn btn-primary mb-3">
-          Add Subject
-        </button>
-        </div>
+<div className="home-container">
+  <Sidebar />
 
-        {errors && <p>{errors}</p>}
-      </div>
+  {/* Component to add and remove subjects */}
+  <div className="main-content">
+    <h1>Welcome, {user.name}!</h1>
+    <h2>Subjects</h2>
+    <ul className="list-group">
+      {subjects.map((subject, index) => (
+        <li key={index} className="list-group-item">
+          {subject}
+          <button
+            onClick={() => handleDeleteSubject(subject)}
+            className="btn btn-danger btn-sm float-end"
+          >
+            x
+          </button>
+        </li>
+      ))}
+    </ul>
+    
+    <div className="add-subject"> {/* Apply the new CSS class here */}
+      <input
+        type="text"
+        className="form-control mb-2 small-input"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Enter new subject"
+      />
+      <button onClick={handleAddSubject} className="btn btn-primary mb-3">
+        Add Subject
+      </button>
     </div>
+
+    {errors && <p>{errors}</p>}
+  </div>
+</div>
+
   );
 }
 
