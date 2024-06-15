@@ -41,7 +41,7 @@ const Stopwatch = () => {
             padding: '10px',  // Decreased padding to make it smaller
             borderRadius: '10px',
             textAlign: 'center',
-            fontFamily: 'Courier, monospace',
+            fontFamily: 'Digital-7, Courier, monospace', // Digital-7 font added
             width: '350px',  // Decreased width
             position: 'fixed',
             bottom: '20px',
@@ -51,6 +51,7 @@ const Stopwatch = () => {
         time: {
             fontSize: '3.5em',  // Increased font size for larger digits
             margin: '10px 0',
+            letterSpacing: '5px', // Adjust letter spacing for digital font
         },
         button: {
             backgroundColor: '#555',
@@ -62,6 +63,7 @@ const Stopwatch = () => {
             cursor: 'pointer',
             width: '60px', // Set fixed width for square shape
             height: '60px', // Set fixed height for square shape
+            display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
         },

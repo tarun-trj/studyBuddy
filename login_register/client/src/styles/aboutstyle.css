@@ -7,13 +7,91 @@ body {
 
 /* Background and styling specific to the about page */
 .about-page {
-  background-color: #f8f9fa;
-  background-image: url("../images/aboutImg.jpg");
-  background-size: cover; /* Ensure the background image covers the entire container */
-  background-position: center top 100px; /* Center the background image horizontally and shift it 100px down from the top */
   min-height: 100vh; /* Set minimum height to cover the viewport */
   display: flex;
   flex-direction: column;
+}
+
+/* Top bar styling */
+.top-bar {
+  background: #255c99; /* Blue gradient background */
+  display: flex;
+  justify-content: space-between; /* Space between the sections */
+  align-items: center;
+  padding: 10px 20px;
+  color: #fff; /* Text color for contrast */
+}
+
+.contact-section {
+  display: flex;
+  align-items: center;
+}
+
+.contact-btn {
+  color: #fff; /* White text color */
+  text-decoration: none;
+  margin-right: 20px;
+  border: 2px solid #fff; /* White border */
+  padding: 10px 15px; /* Add padding */
+  border-radius: 5px; /* Rounded corners */
+  background-color: transparent; /* Transparent background */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for background and text color */
+  cursor: pointer; /* Add pointer cursor on hover */
+}
+
+.contact-btn:hover {
+  background-color: #ffc107; /* Change background color on hover */
+  color: #000; /* Change text color on hover */
+}
+
+.login-register-section {
+  display: flex;
+  align-items: center;
+}
+
+.top-bar .nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.top-bar .nav-link,
+.top-bar .contact-btn {
+  color: #fff; /* White text color */
+  text-decoration: none;
+  margin-right: 20px;
+  border: 2px solid #fff; /* White border */
+  padding: 10px 15px; /* Add padding */
+  border-radius: 5px; /* Rounded corners */
+  background-color: transparent; /* Transparent background */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for background and text color */
+  cursor: pointer; /* Add pointer cursor on hover */
+}
+
+/* Hover effect for links and buttons */
+.top-bar .nav-link:hover,
+.top-bar .contact-btn:hover {
+  background-color: #ffc107; /* Change background color on hover */
+  color: #000; /* Change text color on hover */
+}
+
+/* Timer styles */
+.top-bar .timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.top-bar .timer .text {
+  margin-right: 10px;
+  color: #fff;
+}
+
+.top-bar .timer .time {
+  font-family: "Digital", sans-serif; /* Use a digital font */
+  font-size: 36px; /* Increase font size */
+  color: #fff; /* Color of the timer */
+  letter-spacing: 4px; /* Add letter spacing for better readability */
 }
 
 /* Container for the main content */
@@ -21,12 +99,7 @@ body {
   max-width: 800px;
   margin: 20px auto; /* Center the container with some top margin */
   padding: 20px;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* Semi-transparent white background */
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -65,49 +138,17 @@ body {
   text-decoration: underline;
 }
 
-/* CSS for the navigation bar */
-.about-page .navbar {
-  background-color: #333;
-  padding: 10px 20px;
-}
-
-.about-page .navbar .container {
+/* Blue gradient background for the main content area */
+.about-page .main-content {
+  background: rgb(37, 92, 153);
+  background: linear-gradient(
+    to bottom,
+    rgba(37, 92, 153, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  /* Blue gradient background */
+  flex: 1; /* Make it take the remaining space */
   display: flex;
-  justify-content: flex-end; /* Align links to the right */
-}
-
-.about-page .nav-link,
-.about-page .contact-btn {
-  color: #000000;
-  text-decoration: none;
-  margin-right: 20px;
-  border: none; /* Remove default border */
-  background: none; /* Remove default background */
-  cursor: pointer; /* Add pointer cursor on hover */
-}
-
-/* Hover effect for links and buttons */
-.about-page .nav-link:hover,
-.about-page .contact-btn:hover {
-  color: #ffc107; /* Change color on hover */
-}
-
-/* Timer styles */
-.about-page .timer {
-  display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 20px;
-}
-
-.about-page .timer .text {
-  margin-right: 10px;
-  color: #ffffff;
-}
-
-.about-page .timer .time {
-  font-family: "Digital", sans-serif; /* Use a digital font */
-  font-size: 36px; /* Increase font size */
-  color: #ffffff; /* Color of the timer */
-  letter-spacing: 4px; /* Add letter spacing for better readability */
 }

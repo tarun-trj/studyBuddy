@@ -28,65 +28,27 @@ function Subjects() {
     fetchSubjects();
   }, []);
 
-  // Use state to track checked subjects
   const [checkedSubjects, setCheckedSubjects] = useState([]);
 
-  // Handler to toggle subject check status
   const handleToggleSubject = (subject) => {
     const currentIndex = checkedSubjects.indexOf(subject);
     const newCheckedSubjects = [...checkedSubjects];
 
     if (currentIndex === -1) {
-      newCheckedSubjects.push(subject); // Not currently checked, add to checked list
+      newCheckedSubjects.push(subject);
     } else {
-      newCheckedSubjects.splice(currentIndex, 1); // Currently checked, remove from checked list
+      newCheckedSubjects.splice(currentIndex, 1);
     }
 
     setCheckedSubjects(newCheckedSubjects);
   };
-
-  // const handleMatchSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const token = sessionStorage.getItem("token");
-  //   const email = user.email;
-  //   console.log(token);
-
-  //   try {
-  //     const response = await axios.post(
-  //       "http://127.0.0.1:3002/find",
-  //       { email },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-
-  //     console.log(response);
-  //     if (response.data.emailRes) {
-  //       sessionStorage.setItem("partner", response.data.emailRes);
-  //       navigate("/match");
-  //     } else {
-  //       setError("No partner found for this email.");
-  //     }
-  //   } catch (err) {
-  //     if (err.response) {
-  //       console.log("Error Status:" + err.response.status);
-  //       setError(err.response.data.message || "Unknown error");
-  //     } else {
-  //       setError("Failed to fetch partner email. Please try again later.");
-  //     }
-  //   }
-  // };
 
   const handleMatchSubmit = async (e) => {
     e.preventDefault();
     const email = user.email;
     
     try {
-
-      if(checkedSubjects.length < 1) {
+      if (checkedSubjects.length < 1) {
         setValid(true);
         return;
       }
@@ -100,7 +62,7 @@ function Subjects() {
       });
 
       console.log(response);
-      if(response.data.message !== "OK") {
+      if (response.data.message !== "OK") {
         console.log("Error in function??")
       }
 
@@ -116,26 +78,25 @@ function Subjects() {
     <div className="home-container">
       <Sidebar />
       <div className="main-content">
-        <h2>Subject List</h2>
-
-        <h3>Subjects</h3>
+        <h2 className = "welcome">Subjects:</h2>
         <ul className="list-group">
           {subjects.map((subject) => (
             <li key={subject} className="list-group-item">
+              <span className="subject-text">{subject}</span>
               <input
                 type="checkbox"
                 checked={checkedSubjects.includes(subject)}
                 onChange={() => handleToggleSubject(subject)}
-                className="me-2"
+                className="subject-checkbox"
               />
-              {subject}
             </li>
           ))}
         </ul>
-      <button onClick={handleMatchSubmit}>Enter Matching</button>
-      {valid && <p style={{ color: 'red' }}>Select at least one subject</p>}
+        <div className="button-container">
+          <button onClick={handleMatchSubmit} className="btn btn-primary">Start Matching</button>
+          {valid && <p style={{ color: 'red', marginTop: '10px' }}>Select at least one subject</p>}
+        </div>
       </div>
-
     </div>
   );
 }

@@ -23,6 +23,7 @@ body, html {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
 }
 
 .sidebar .logo {
@@ -53,7 +54,12 @@ body, html {
 .main-content {
   flex: 1;
   padding: 20px;
-  background-color: #ffffff;
+  background: rgb(37, 92, 153);
+  background: linear-gradient(
+    to bottom,
+    rgba(37, 92, 153, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
 }
 
 .list-group {
@@ -91,4 +97,24 @@ body, html {
 .stop{
   transform: scale(2);
 }
+
+.welcome{
+  color: #fff;
+}
+
+.sub{
+  color: #fff;
+}
+/* styles.css or your global styles file */
+.btn-primary {
+  background-color: #ffc107; /* Yellow background */
+  border-color: #ffc107; /* Matching border color */
+  color: #fff; /* White text color */
+}
+
+.btn-primary:hover {
+  background-color: #ffcd38; /* Darker yellow on hover */
+  border-color: #ffcd38;
+}
+
 

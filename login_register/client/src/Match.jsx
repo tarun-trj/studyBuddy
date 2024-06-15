@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Sidebar from './components/sidebar.jsx';
+import { useNavigate } from 'react-router-dom';
+import Sidebar from './components/sidebar.jsx'; // Assuming Sidebar component path
 import "./styles/styles.css";
 
 function Match() {
     const [error, setError] = useState('');
-    const [partner, setPartner] = useState(sessionStorage.getItem('partner'));
+    const [partnerEmail, setPartnerEmail] = useState(sessionStorage.getItem('partnerEmail'));
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("token");
-    
+    const navigate = useNavigate(); // If you need to navigate programmatically
+
     useEffect(() => {
-        const fetchPartner = async () => {
-            const email = user.email;
+        const fetchPartnerEmail = async () => {
+            const userEmail = user.email;
 
             try {
                 const response = await axios.post(
                     "http://127.0.0.1:3002/find",
-                    { email },
+                    { email: userEmail },
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -28,10 +29,10 @@ function Match() {
 
                 console.log(response);
                 if (response.data.emailRes) {
-                    sessionStorage.setItem("partner", response.data.emailRes);
-                    setPartner(response.data.emailRes);
+                    sessionStorage.setItem("partnerEmail", response.data.emailRes);
+                    setPartnerEmail(response.data.emailRes);
                 } else {
-                    sessionStorage.removeItem("partner");
+                    sessionStorage.removeItem("partnerEmail");
                     setError("No partner found for this email.");
                 }
             } catch (err) {
@@ -44,25 +45,24 @@ function Match() {
             }
         };
 
-        if (!partner) {
-            fetchPartner();
+        if (!partnerEmail) {
+            fetchPartnerEmail();
         }
-    }, []);
+    }, [partnerEmail, token, user.email]);
 
-    if (!partner) {
-        return (
-            <div>No partner</div>
-        );
+    if (!partnerEmail) {
+        return <div>Loading...</div>; // You can show a loading indicator here
     }
 
     return (
-        <div className = "homes">
+        <div className="match-container">
             <Sidebar />
-            <div>
-                <h1>Find Your Partner's Email</h1>
-                <p>Partner Email: {partner}</p>
+            <div className="main-content">
+                <h1>Welcome, {user.name}!</h1>
+                <h2>Partner's Email</h2>
+                <p>{partnerEmail}</p>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
             </div>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
     );
 }

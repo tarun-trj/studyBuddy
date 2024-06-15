@@ -104,18 +104,18 @@ function Home() {
 
   {/* Component to add and remove subjects */}
   <div className="main-content">
-    <h1>Welcome, {user.name}!</h1>
-    <h2>Subjects</h2>
+    <h1 className = "welcome">Welcome, {user.name}!</h1>
+    <h3 className = "sub">Subjects:</h3>
     <ul className="list-group">
       {subjects.map((subject, index) => (
         <li key={index} className="list-group-item">
           {subject}
           <button
             onClick={() => handleDeleteSubject(subject)}
-            className="btn btn-danger btn-sm float-end"
-          >
-            x
-          </button>
+            className="btn btn-danger btn-sm delete-button" // Add a class for styling
+            >
+              x
+            </button>
         </li>
       ))}
     </ul>
