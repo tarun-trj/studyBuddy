@@ -52,6 +52,7 @@ body {
 .top-bar .nav-links {
   display: flex;
   align-items: center;
+  
 }
 
 .top-bar .nav-link,
@@ -80,19 +81,24 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  border: 2px solid #000; /* Solid black border */
+  border-radius: 8px; /* Rounded corners for the border */
+  background-color: #4e4e4e; /* Solid black background */
 }
 
 .top-bar .timer .text {
   margin-right: 10px;
-  color: #fff;
+  color: #ffeb3b; /* Yellow text color */
 }
 
 .top-bar .timer .time {
-  font-family: "Digital", sans-serif; /* Use a digital font */
+  font-family: "Digital-7", sans-serif; /* Use a digital font */
   font-size: 36px; /* Increase font size */
-  color: #fff; /* Color of the timer */
+  color: #ffeb3b; /* Yellow color for the timer */
   letter-spacing: 4px; /* Add letter spacing for better readability */
 }
+
+
 
 /* Container for the main content */
 .about-page .container {

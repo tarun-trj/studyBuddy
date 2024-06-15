@@ -308,3 +308,13 @@ html {
 
 /* ... your existing styles ... */
 
+@font-face {
+  font-family: 'Digital-7';
+  src: local('Digital-7'), url('../fonts/digital-7.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.stop{
+  font-family: "Arial", sans-serif;
+}

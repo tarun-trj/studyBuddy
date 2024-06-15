@@ -43,7 +43,7 @@ const Stopwatch = () => {
       padding: "18px", // Adjusted padding
       borderRadius: "10px",
       textAlign: "center",
-      fontFamily: "Courier, monospace",
+      fontFamily: "Digital-7, Courier, monospace",
       width: "180px", // Adjusted width
       position: "fixed",
       right: "40px",
@@ -59,7 +59,7 @@ const Stopwatch = () => {
     },
     buttonContainer: {
       display: "flex",
-      justifyContent: "space-between",
+      justifyContent: "space-around"
     },
     button: {
       backgroundColor: "#444",
@@ -67,7 +67,7 @@ const Stopwatch = () => {
       border: "none",
       borderRadius: "8px",
       padding: "12px", // Adjusted padding
-      margin: "3px", // Adjusted margin
+      margin: "1px", // Adjusted margin (reduced from 3px)
       cursor: "pointer",
       width: "30px", // Adjusted width
       height: "30px", // Adjusted height
@@ -81,7 +81,9 @@ const Stopwatch = () => {
 
   return (
     <div style={stopwatchStyles.container}>
-      <h1 style={{ fontSize: "1.2em", marginBottom: "5px" }}>Stopwatch</h1>
+      <h1 className="stop" style={{ fontSize: "0.8em", marginBottom: "5px" }}>
+        Stopwatch
+      </h1>
       <div style={stopwatchStyles.time}>{formatTime(time)}</div>
       <div style={stopwatchStyles.buttonContainer}>
         <button style={stopwatchStyles.button} onClick={startTimer}>
