@@ -27,12 +27,19 @@ function AllUsers() {
     <div className="homes">
       <SideBar />
       <div className="main-content">
-        <h1>All Users</h1>
+        <h1 className="welcome">Discover Your Friends</h1>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <ul className="user-list">
           {users.map((user) => (
             <li key={user._id} className="user-list-item">
-              {user.name}
+              <div className="user-info">
+                <div className="user-name">{user.name}</div>
+                <div className="user-details">
+                  Meet {user.name}, from the {user.branch} branch, currently
+                  rocking in semester {user.semester}. Feel free to reach out to
+                  them at {user.email} for collaboration or queries!
+                </div>
+              </div>
             </li>
           ))}
         </ul>
