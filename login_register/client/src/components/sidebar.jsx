@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Timer from "./timer";
 
-
 function Sidebar() {
   const navigate = useNavigate();
   const handleLogOut = (id) => {
@@ -33,7 +32,12 @@ function Sidebar() {
             <Link to="/todo">Start Study</Link>
           </li>
           <li>
-            <Link to ="/login" onClick={handleLogOut}>Log Out</Link>
+            <Link to="/change-password">Change Password</Link>
+          </li>
+          <li>
+            <Link to="/login" onClick={handleLogOut}>
+              Log Out
+            </Link>
           </li>
         </ul>
       </nav>

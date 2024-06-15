@@ -24,14 +24,14 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:3002/login', user, {
+      const response = await axios.post("http://127.0.0.1:3002/login", user, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-  
+
       console.log("login response", response.data);
-  
+
       if (response.status === 200) {
         const { token, user } = response.data;
         // Assuming response.data contains a token and user information
@@ -50,10 +50,9 @@ function Login() {
       console.error("Login error", error);
     }
   };
-  
 
   const storeTokenInSS = (token) => {
-    sessionStorage.setItem('token', token);
+    sessionStorage.setItem("token", token);
   };
 
   return (
@@ -62,7 +61,9 @@ function Login() {
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="email"><strong>Email</strong></label>
+            <label htmlFor="email">
+              <strong>Email</strong>
+            </label>
             <input
               type="email"
               id="email"
@@ -73,7 +74,9 @@ function Login() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password"><strong>Password</strong></label>
+            <label htmlFor="password">
+              <strong>Password</strong>
+            </label>
             <input
               type="password"
               id="password"
@@ -81,6 +84,9 @@ function Login() {
               name="password"
               onChange={handleInput}
             />
+          </div>
+          <div className="forgot-password">
+            <Link to="/forgot-password">Forgot Password</Link>
           </div>
           <button type="submit" className="btn btn-success">
             Login
