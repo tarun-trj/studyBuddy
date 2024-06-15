@@ -239,8 +239,7 @@ html {
 }
 
 .home-container {
-  display: flex;
-  flex: 1; /* Fill remaining height */
+  display: flex; /* Fill remaining height */
 }
 
 .main-content {
@@ -296,3 +295,16 @@ html {
 .btn {
   margin-left: 10px; /* Add margin between buttons */
 }
+
+/* styles/styles.css */
+/* ... your existing styles ... */
+
+.stopwatch-container {
+  position: fixed;
+  top: 20px; /* Position at the top */
+  right: 20px; /* Position at the right */
+  z-index: 1000; /* Ensure it appears above other content */
+}
+
+/* ... your existing styles ... */
+

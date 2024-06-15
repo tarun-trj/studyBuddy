@@ -40,22 +40,22 @@ const Stopwatch = () => {
     container: {
       backgroundColor: "#282c34",
       color: "#ffeb3b", // Yellow text color
-      padding: "30px",
+      padding: "18px", // Adjusted padding
       borderRadius: "10px",
       textAlign: "center",
-      fontFamily: "Digital-7, Courier, monospace",
-      width: "300px", // Adjusted width
+      fontFamily: "Courier, monospace",
+      width: "180px", // Adjusted width
       position: "fixed",
-      bottom: "20px",
-      right: "20px",
+      right: "40px",
       zIndex: 1000,
       boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+      fontSize: "0.8em", // Adjusted font size for container
     },
     time: {
-      fontSize: "2.5em", // Adjusted font size for larger digits
-      margin: "10px 0",
-      letterSpacing: "5px",
-      lineHeight: "1", // Ensure the time fits within the box
+      fontSize: "2em", // Adjusted font size for time
+      margin: "8px 0", // Adjusted margin
+      letterSpacing: "3px", // Adjusted letter spacing
+      lineHeight: "1.2", // Adjusted line height
     },
     buttonContainer: {
       display: "flex",
@@ -65,23 +65,23 @@ const Stopwatch = () => {
       backgroundColor: "#444",
       color: "#ffeb3b",
       border: "none",
-      borderRadius: "10px",
-      padding: "20px",
-      margin: "5px",
+      borderRadius: "8px",
+      padding: "12px", // Adjusted padding
+      margin: "3px", // Adjusted margin
       cursor: "pointer",
-      width: "70px", // Increased width
-      height: "70px", // Increased height
+      width: "30px", // Adjusted width
+      height: "30px", // Adjusted height
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      fontSize: "1.5em",
+      fontSize: "0.9em", // Adjusted font size for button icons
       transition: "background-color 0.2s",
     },
   };
 
   return (
     <div style={stopwatchStyles.container}>
-      <h1>Stopwatch</h1>
+      <h1 style={{ fontSize: "1.2em", marginBottom: "5px" }}>Stopwatch</h1>
       <div style={stopwatchStyles.time}>{formatTime(time)}</div>
       <div style={stopwatchStyles.buttonContainer}>
         <button style={stopwatchStyles.button} onClick={startTimer}>

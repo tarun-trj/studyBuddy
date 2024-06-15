@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "./sidebar.jsx";
 import "../styles/styles.css";
 import axios from "axios";
-import Stopwatch from "./stopwatch.jsx";
+import Stopwatch from "./stopwatch.jsx"; // Import the Stopwatch component
 
 function Todo() {
   const [tasks, setTasks] = useState([]);
