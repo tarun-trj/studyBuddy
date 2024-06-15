@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import SideBar from "./components/sidebar.jsx";
+import "./styles/styles.css"; // Make sure this path is correct
 
 function AllUsers() {
   const [users, setUsers] = useState([]);
@@ -22,14 +24,26 @@ function AllUsers() {
   }, []);
 
   return (
-    <div>
-      <h1>All Users</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <ul>
-        {users.map((user) => (
-          <li key={user._id}>{user.name}</li> // Adjust based on your user model
-        ))}
-      </ul>
+    <div className="homes">
+      <SideBar />
+      <div className="main-content">
+        <h1 className="welcome">Discover Your Friends</h1>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <ul className="user-list">
+          {users.map((user) => (
+            <li key={user._id} className="user-list-item">
+              <div className="user-info">
+                <div className="user-name">{user.name}</div>
+                <div className="user-details">
+                  Meet {user.name}, from the {user.branch} branch, currently
+                  rocking in semester {user.semester}. Feel free to reach out to
+                  them at {user.email} for collaboration or queries!
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

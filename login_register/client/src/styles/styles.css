@@ -1,106 +1,320 @@
-/* General styles */
-body, html {
+/* styles/styles.css */
+body,
+html {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  height: 100%;
 }
 
-.home-container {
+.home-container,
+.match-container {
   display: flex;
-  height: 100vh; /* Ensure it takes the full viewport height */
+  height: 100vh;
+}
+
+.button-container {
+  margin-top: 20px; /* Add margin to create space between subjects and button */
+}
+
+.homes {
+  display: flex;
+  height: 100vh;
 }
 
 .sidebar {
-  width: 20%;
+  width: 250px;
   background-color: #333;
-  color: #fff;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.logo {
+.sidebar .logo {
   padding: 20px;
-  text-align: center;
-  font-size: 1.5em;
 }
 
-nav ul {
-  list-style-type: none;
+.sidebar nav ul {
+  list-style: none;
   padding: 0;
   margin: 0;
 }
 
-nav ul li {
-  padding: 15px 20px;
+.sidebar nav ul li {
+  padding: 10px 20px;
 }
 
-nav ul li a {
-  color: #fff;
+.sidebar nav ul li a {
+  color: white;
   text-decoration: none;
 }
 
-nav ul li a:hover {
-  background-color: #575757;
-  display: block;
-}
-
-.footer {
+.sidebar .footer {
   padding: 20px;
+  background-color: #444;
   text-align: center;
-  background-color: #222;
 }
 
 .main-content {
   flex: 1;
   padding: 20px;
-  background-color: #f4f4f4;
-  overflow-y: auto;
+  background: rgb(37, 92, 153);
+  background: linear-gradient(
+    to bottom,
+    rgba(37, 92, 153, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
 }
 
-.main-content h1 {
-  margin-top: 0;
+.list-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  border-radius: 20px;
 }
 
-.main-content input[type="text"] {
-  width: calc(25% - 10px);
-  margin-right: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.main-content button {
-  padding: 10px 20px;
-  margin-right: 10px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.main-content button:hover {
-  background-color: #575757;
-}
-
-.main-content ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.main-content ul li {
-  padding: 10px 0;
+.list-group-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #f9f9f9;
 }
 
-.main-content ul li button {
-  background-color: red;
+/* New CSS for spacing */
+.add-subject {
+  margin-top: 20px; /* Adjust this value as needed */
+}
+
+.small-input {
+  width: 200px; /* Adjust the width as needed */
+}
+.stopwatch-container {
+  position: fixed;
+  bottom: 20px; /* Adjust this value to move it up or down */
+  right: 20px; /* Adjust this value to move it left or right */
+  z-index: 1000; /* Ensure it appears above other content */
+}
+
+.stop {
+  transform: scale(2);
+}
+
+.welcome {
   color: #fff;
-  border: none;
-  cursor: pointer;
-  padding: 5px 10px;
 }
 
-.main-content ul li button:hover {
-  background-color: darkred;
+.sub {
+  color: #fff;
+}
+/* styles.css or your global styles file */
+.btn-primary {
+  background-color: #ffc107; /* Yellow background */
+  border-color: #ffc107; /* Matching border color */
+  color: #fff; /* White text color */
+}
+
+.btn-primary:hover {
+  background-color: #ffcd38; /* Darker yellow on hover */
+  border-color: #ffcd38;
+}
+
+/* New CSS for spacing */
+.button-container {
+  margin-top: 20px; /* Add margin to create space between subjects and button */
+}
+
+/* Guidelines styling */
+.guidelines {
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  font-family: "Arial", sans-serif; /* Set the font family */
+}
+
+.guidelines h2 {
+  color: #333;
+  margin-bottom: 10px;
+  font-family: "Georgia", serif; /* Set the font family for headings */
+  font-size: 24px; /* Adjust the font size */
+}
+
+.guidelines ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.guidelines ul li {
+  margin-bottom: 10px;
+  color: #555;
+  font-family: "Arial", sans-serif; /* Set the font family for list items */
+  font-size: 18px; /* Adjust the font size */
+}
+
+/* Additional font styling for the main content */
+.main-content {
+  font-family: "Arial", sans-serif; /* Set the font family */
+}
+
+/* User list container */
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between the user cards */
+  padding: 20px;
+  list-style: none;
+}
+
+/* User list item (card) */
+.user-list-item {
+  background: linear-gradient(145deg, #f3f3f3, #e1e1e1);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 8px 8px 16px #d1d1d1, -8px -8px 16px #ffffff;
+  width: calc(30% - 20px); /* Adjust width as needed */
+  box-sizing: border-box;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* User list container */
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between the user cards */
+  padding: 20px;
+  list-style: none;
+}
+
+/* User list item (card) */
+.user-list-item {
+  background: linear-gradient(145deg, #e0eafc, #cfdef3);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1),
+    -8px -8px 16px rgba(255, 255, 255, 0.7);
+  width: calc(30% - 20px); /* Adjust width as needed */
+  box-sizing: border-box;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Card hover effect */
+.user-list-item:hover {
+  transform: translateY(-5px);
+}
+
+/* User information */
+.user-info {
+  font-family: "Montserrat", sans-serif;
+  color: #333;
+}
+
+/* User name */
+.user-name {
+  font-family: "Poppins", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #0056b3;
+  margin-bottom: 15px;
+}
+
+/* Additional user details */
+.user-details {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* styles/styles.css */
+
+/* styles/styles.css */
+
+/* Ensure the container fills the viewport height */
+.full-height-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.home-container {
+  display: flex; /* Fill remaining height */
+}
+
+.main-content {
+  flex: 1; /* Grow to take remaining space */
+  padding: 20px;
+  overflow-y: auto; /* Enable scrolling if content exceeds height */
+}
+
+.todo-input {
+  width: 100%; /* Use full width of the parent container */
+  max-width: 400px; /* Limit maximum width for better readability */
+}
+
+.task-card {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.task-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+}
+
+.task-card .task-description {
+  flex: 1; /* Take remaining space */
+  margin: 0 10px; /* Add margin around task description */
+  font-size: 1.2em; /* Larger font size for better readability */
+  color: #333; /* Darker text color */
+}
+
+.task-card .task-description.completed {
+  text-decoration: line-through; /* Strikethrough completed tasks */
+  color: #777; /* Lighter text color for completed tasks */
+}
+
+.btn-primary {
+  background-color: #007bff; /* Blue button color */
+  border-color: #007bff;
+}
+
+.btn-danger {
+  background-color: #dc3545; /* Red button color */
+  border-color: #dc3545;
+}
+
+.btn {
+  margin-left: 10px; /* Add margin between buttons */
+}
+
+/* styles/styles.css */
+/* ... your existing styles ... */
+
+.stopwatch-container {
+  position: fixed;
+  top: 20px; /* Position at the top */
+  right: 20px; /* Position at the right */
+  z-index: 1000; /* Ensure it appears above other content */
+}
+
+/* ... your existing styles ... */
+
+@font-face {
+  font-family: 'Digital-7';
+  src: local('Digital-7'), url('../fonts/digital-7.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.stop{
+  font-family: "Arial", sans-serif;
 }

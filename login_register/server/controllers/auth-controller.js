@@ -8,7 +8,7 @@ if (result.error) {
 
 const register = async (req, res) => {
   const { name, email, password, branch, semester } = req.body;
-  
+
   try {
     const userExist = await studentModel.findOne({ email: email });
 
