@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Oval } from 'react-loader-spinner';
 import "./styles/loginstyles.css"; // Import login styles
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import LoadingComponent from './components/loadingComponent.jsx';
 
 function Login() {
+  const { state } = useLocation();
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
-    email: "",
+    email: state?.username || "",
     password: "",
   });
-
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -23,6 +26,8 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     try {
       const response = await axios.post("http://127.0.0.1:3002/login", user, {
         headers: {
@@ -34,7 +39,6 @@ function Login() {
 
       if (response.status === 200) {
         const { token, user } = response.data;
-        // Assuming response.data contains a token and user information
         storeTokenInSS(token);
         sessionStorage.setItem("user", JSON.stringify(user));
         navigate("/home");
@@ -42,12 +46,9 @@ function Login() {
         console.error("Login failed:", response.data);
       }
     } catch (error) {
-      if (error.response) {
-        console.error("Server error:", error.response.data.message);
-      } else {
-        console.error("Network error:", error.message);
-      }
       console.error("Login error", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,48 +57,66 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-form">
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="email">
-              <strong>Email</strong>
-            </label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter Email"
-              autoComplete="off"
-              name="email"
-              onChange={handleInput}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="password">
-              <strong>Password</strong>
-            </label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter Password"
-              name="password"
-              onChange={handleInput}
-            />
-          </div>
-          <div className="forgot-password">
-            <Link to="/forgot-password">Forgot Password</Link>
-          </div>
-          <button type="submit" className="btn btn-success">
-            Login
-          </button>
-          <p>Don't have an account?</p>
-          <Link to="/register" className="btn btn-light border">
-            Sign Up
-          </Link>
-        </form>
-      </div>
+    <main>
+    <div className="image-container">
+    <div className="image">
+    <div className={`form ${loading ? 'form-slide-out' : ''}`}>
+      {!loading ? (
+        <div className="actual-form">
+          <h2 className="form-heading">Login</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="email">
+              <label htmlFor="email">
+                <strong>Email</strong>
+              </label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter Email"
+                autoComplete="off"
+                name="email"
+                value={user.email}
+                onChange={handleInput}
+              />
+            </div>
+            <div className="password">
+              <label htmlFor="password">
+                <strong>Password</strong>
+              </label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter Password"
+                name="password"
+                value={user.password}
+                onChange={handleInput}
+              />
+            </div>
+
+            <button className="submit" type="submit">
+              {loading ? (
+                <Oval color="#fff" height={20} width={20} />
+              ) : (
+                <i className="fas fa-arrow-right" style={{fontSize: '20px' }} />
+              )}
+            </button>
+            <p className="small">Don't have an account?</p>
+            
+            <div className="register">
+            <Link to="/register">
+              Sign Up
+            </Link>
+            </div>
+            <Link to="/forgot-password" className="forgot">Forgot Password?</Link>
+          </form>
+        </div>
+      ) : (
+        <LoadingComponent size={50} />
+      )}
     </div>
+    </div>
+    </div>
+    </main>
   );
 }
 

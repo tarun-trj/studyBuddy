@@ -1,0 +1,116 @@
+.navbar {
+  background: -webkit-gradient(linear, left top, right top, from(#36d7b7), to(#2b303b));
+  background: linear-gradient(to right, #36d7b7, #2b303b); /* Fallback for other browsers */
+  padding: 0; /* Remove padding to avoid any uncovered areas */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 10vh;
+  font-family: 'Lato', 'sans-serif';
+  font-weight: 500;
+}
+
+.sec {
+  display: flex;
+  width: 60vw;
+}
+
+.logo {
+  height: 100%;
+  margin-left: 20px;
+  align-items: center;
+  display: flex;
+  margin-right: 30px;
+}
+
+.logo p{
+  margin: 0 0 0 0;
+  padding: 5px 10px;
+  font-size: 28px;
+  font-family: 'Autumn';
+  color: whitesmoke;
+}
+
+.navbar .links {
+  display: flex;
+  margin-left: 30px;
+}
+
+.navbar .nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar .nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-kerning:auto;
+}
+
+.nav-link:hover {
+  background-color: rgb(255, 255, 255);
+  color: #36d7b7;
+}
+
+.navbar .contact-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.navbar .contact-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.navbar .navtime {
+  display: flex;
+  align-items: center;
+  height: 100%; /* Ensure the timer container covers the full height */
+  padding: 0.5rem; /* Add padding to the timer container */
+  color: rgba(236, 245, 255, 0.965); /* Text color for the timer */
+}
+
+.navtime .timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 10px;
+  margin: auto;
+}
+
+.navtime .time-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0.2rem;
+}
+
+.navtime .digits {
+  font-family: 'Digital-7';
+  font-weight: 400;
+  display: flex;
+}
+
+.navtime .value {
+  font-size: 1rem;
+  margin: 0.2rem;
+  padding: 0.2rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  width: 2rem;
+  text-align: center;
+}
+
+.navtime .label {
+  font-size: 0.8em;
+  font-family: 'Lato', sans-serif;
+}

@@ -4,7 +4,8 @@ import { toast } from 'react-toastify';
 
 const ForgotReq = () => {
   const [email, setEmail] = useState('');
-
+  sessionStorage.clear();
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

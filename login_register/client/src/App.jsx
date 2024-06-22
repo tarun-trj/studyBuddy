@@ -8,7 +8,6 @@ import About from "./About.jsx";
 import AllUser from "./AllUser.jsx";
 import StartMatch from "./StartMatch.jsx";
 import Todo from "./components/todo.jsx";
-import Stopwatch from "./components/stopwatch.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./auth/auth-context.jsx";
 import ProtectedRoute from "./components/protectedRoute.jsx";
@@ -22,24 +21,28 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<About />}></Route>
-          <Route path="/stopwatch" element={<Stopwatch />}></Route>
-          <Route path="/start-match" element={<StartMatch />}></Route>
-          <Route path="/all-user" element={<AllUser />}></Route>
-          <Route path="/register" element={<Signup />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/home" element={<Home />}></Route>
-          <Route path="/match" element={<Match />}></Route>
+          <Route path="/register" element={<Signup />}></Route>
           <Route path='forgot-password/:token' element={<SetPW />}></Route>
           <Route path="/forgot-password" element={<ForgotReq />}></Route>
-          <Route path="/change-password" element={<ChangePW />}></Route>
-          <Route
-            path="/todo"
-            element={
-              <ProtectedRoute>
-                <Todo />
-              </ProtectedRoute>
-            }
-          ></Route>
+          <Route path="/start-match" element={
+              <ProtectedRoute><StartMatch /></ProtectedRoute>
+            } />
+          <Route path="/all-user" element={
+              <ProtectedRoute><AllUser /></ProtectedRoute>
+            } />
+          <Route path="/home" element={
+              <ProtectedRoute><Home /></ProtectedRoute>
+            } />
+          <Route path="/match" element={
+              <ProtectedRoute><Match /></ProtectedRoute>
+            } />
+          <Route path="/change-password" element={
+              <ProtectedRoute><ChangePW /></ProtectedRoute>
+          } />
+          <Route path="/todo" element={
+              <ProtectedRoute>\<Todo /></ProtectedRoute>
+            } />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
