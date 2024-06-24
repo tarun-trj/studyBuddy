@@ -2,6 +2,7 @@ import React from "react";
 import Timer from "./timer.jsx";
 import "../styles/nav-style.css"; // Import the CSS file
 import logo from "../images/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   // Function to show the contact information pop-up
@@ -9,6 +10,7 @@ const Navbar = () => {
     // Function implementation to show contact info goes here
     console.log("Contact information displayed");
   };
+  const navigate = useNavigate();
 
   const styles = {
     match: {
@@ -21,7 +23,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="sec">
-        <div className="logo"><img src={logo} width={50}/><p>StudyBuddy</p></div>
+        <div className="logo" onClick={() => {navigate("/");}} style={{cursor: "pointer"}}><img src={logo} width={50}/><p>StudyBuddy</p></div>
         <div className="links">
           <div className="nav-links">
             <a href="/login" className="nav-link">

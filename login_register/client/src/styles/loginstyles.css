@@ -148,7 +148,7 @@
   margin-bottom: 5px;
 }
 
-.form  .register a {
+.form .register a {
   text-decoration: none;
   color: #318a7e;
   font-size: 18px;
@@ -163,7 +163,10 @@
   background-color: #318a7e;
   border-color: #318a7e;
   color: #fff;
+}
 
+.form .register:hover  a {
+  color: #fff;
 }
 
 .form .submit-register a {

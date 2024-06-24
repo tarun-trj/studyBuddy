@@ -47,7 +47,7 @@ function Todo() {
       const result = await response.json();
       if (response.ok) {
         setTasks([...tasks, result.task]);
-        setInput(""); // Clear input field
+        setInput("");
       } else {
         console.error(result.message);
       }
@@ -102,7 +102,6 @@ function Todo() {
   };
 
   return (
-    <div className="full-height-container">
       <div className="home-container">
         <Sidebar />
         <div className="main-content">
@@ -147,12 +146,10 @@ function Todo() {
             ))
           )}
         </div>
-      </div>
-
-      <div className="stopwatch-container">
+        <div className="stopwatch-container">
         <Stopwatch />
       </div>
-    </div>
+      </div>
   );
 }
 

@@ -1,0 +1,60 @@
+.sidebar {
+    font-family: 'Lato';
+    width: 275px;
+    background-image: linear-gradient(60deg, #36d7b7, #318a7e);
+    color: white;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+
+.sidebar .logo {
+    height: auto;
+    padding: 20px;
+    width: 250px;
+    margin: 20px 0 20px 0;
+    align-items: center;
+}
+  
+.sidebar nav {
+    align-self: stretch;
+    flex-grow: 1;
+    padding: 20px 0px
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: auto;
+}
+  
+.sidebar nav ul li {
+    padding: 10px 30px;
+}
+
+.sidebar nav ul li a {
+    height: 100%;
+    width: 100%;
+}
+  
+.sidebar li:hover {
+    background-color: whitesmoke;
+}
+
+.sidebar li:hover a {
+    color: #36d7b7;
+}
+
+.sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+  
+.sidebar .footer {
+    padding: 20px;
+    background-color: #444;
+    text-align: center;
+    padding-bottom: 30px;
+    width: 100%;
+}

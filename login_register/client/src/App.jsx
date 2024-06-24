@@ -41,7 +41,7 @@ function App() {
               <ProtectedRoute><ChangePW /></ProtectedRoute>
           } />
           <Route path="/todo" element={
-              <ProtectedRoute>\<Todo /></ProtectedRoute>
+              <ProtectedRoute><Todo /></ProtectedRoute>
             } />
         </Routes>
       </BrowserRouter>

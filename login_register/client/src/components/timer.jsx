@@ -7,13 +7,42 @@ const Timer = () => {
     const [secondsTens, setSecondsTens] = useState(0); // Initialize with default value 0
 
     const timerStyle = {
-        value: {
-            fontFamily: "Digital 7",
-            backgroundColor: "rgba(255, 255, 255, 0.2)", // Example: Background color
-            borderRadius: "5px", // Example: Border radius
-            textAlign: "center" // Example: Center text alignment
+        timer: {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(255, 255, 255, 0)',
+          borderRadius: '10px',
+          margin: 'auto'
         },
-    };
+        timeSection: {
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          margin: '0 0.2rem'
+        },
+        digits: {
+          fontFamily: 'Digital-7',
+          fontWeight: 400,
+          display: 'flex'
+        },
+        value: {
+          fontFamily: "Digital 7",
+          backgroundColor: "rgba(255, 255, 255, 0.2)", // Example: Background color
+          textAlign: "center", // Example: Center text alignment   
+          fontSize: '1rem',
+          margin: '0.2rem',
+          padding: '0.2rem',
+          background: 'rgba(255, 255, 255, 0.2)',
+          borderRadius: '5px',
+          width: '2rem',
+          textAlign: 'center'
+        },
+        label: {
+          fontSize: '0.8em',
+          fontFamily: 'Lato, sans-serif'
+        }
+      };
 
     useEffect(() => {
         const updateTimer = () => {
@@ -36,20 +65,20 @@ const Timer = () => {
     }, []);
 
     return (
-        <div className="timer">
-            <div className="time-section minutes">
-                <div className="digits">
+        <div className="timer" style={timerStyle.timer}>
+            <div className="time-section minutes" style={timerStyle.timeSection}>
+                <div className="digits" style={timerStyle.digits}>
                     <div className="value" style={timerStyle.value}>{minutesTens}</div>
                     <div className="value" style={timerStyle.value}>{minutesOnes}</div>
                 </div>
-                <div className="label">Minutes</div>
+                <div className="label" style={timerStyle.label}>Minutes</div>
             </div>
-            <div className="time-section seconds">
-                <div className="digits">
+            <div className="time-section seconds" style={timerStyle.timeSection}>
+                <div className="digits" style={timerStyle.digits}>
                     <div className="value" style={timerStyle.value}>{secondsTens}</div>
                     <div className="value" style={timerStyle.value}>{secondsOnes}</div>
                 </div>
-                <div className="label">Seconds</div>
+                <div className="label" style={timerStyle.label}>Seconds</div>
             </div>
         </div>
     );

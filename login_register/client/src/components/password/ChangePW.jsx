@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../Navbar';
 
 const ChangePW = () => {
   const token = sessionStorage.getItem("token");
@@ -55,37 +56,47 @@ const ChangePW = () => {
   }
 
   return (
-    <div>
-      <h2>Reset Password</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="old">Enter your Old Password:</label>
-        <input
-          type="password"
-          id="old"
-          value={oldPW}
-          onChange={(e) => setOld(e.target.value)}
-          required
-        />
-        <label htmlFor="new">Enter your New Password:</label>
-        <input
-          type="password"
-          id="new"
-          value={newPW}
-          onChange={(e) => setNew(e.target.value)}
-          required
-        />
-        <label htmlFor="confirm">Confirm New Password:</label>
-        <input
-          type="password"
-          id="confirm"
-          value={confirm}
-          onChange={(e) => setConfirm(e.target.value)}
-          required
-        />
-        <button type="submit">Reset Password</button>
-      </form>
+    <div className="full">
+      <div className="about-page">
+        <Navbar />
+        <div className="content-container">
+          <div className="content password">
+            <h1 style={{fontFamily: "Montserrat"}}>Reset Password</h1>
+            <form onSubmit={handleSubmit} className='starter-form'>
+              <label style={{alignSelf: "start"}} htmlFor="old">Enter your Old Password:</label>
+              <input
+                type="password"
+                id="old"
+                value={oldPW}
+                onChange={(e) => setOld(e.target.value)}
+                required
+                style={{width: "100%", padding: "5px"}}
+              />
+              <label style={{alignSelf: "start"}} htmlFor="new">Enter your New Password:</label>
+              <input
+                type="password"
+                id="new"
+                value={newPW}
+                onChange={(e) => setNew(e.target.value)}
+                required
+                style={{width: "100%", padding: "5px"}}
+              />
+              <label style={{alignSelf: "start"}} htmlFor="confirm">Confirm New Password:</label>
+              <input
+                type="password"
+                id="confirm"
+                value={confirm}
+                onChange={(e) => setConfirm(e.target.value)}
+                required
+                style={{width: "100%", padding: "5px"}}
+              />
+              <button type="submit" className='starter-login' style={{border: "2px solid #318a7e", marginTop: "20px", borderRadius: "5px", width: "100%"}}>Reset Password</button>
+            </form>
 
-      {valid && <p>{message}</p>}
+            {valid && <p>{message}</p>}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

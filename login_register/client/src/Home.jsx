@@ -20,13 +20,21 @@ function Home() {
   const handleAddSubject = async () => {
     const email = user.email;
     const trimmedInput = input.trim();
+    const regex = /^[A-Z]{2}\d{3}$/;
 
     if (trimmedInput === "") {
+        setError("Input cannot be empty.");
         console.log("Input cannot be empty.");
         return;
     }
 
+    if(!regex.test(trimmedInput)) {
+      setError("Please follow format ABXXX, eg CS101");
+      return;
+    }
+
     if (subjects.includes(trimmedInput)) {
+        setError("Subject already exists.");
         console.log("Subject already exists.");
         return;
     }
@@ -48,6 +56,7 @@ function Home() {
 
         setSubjects([...subjects, trimmedInput]);
         setInput("");
+        setError("");
     } catch (error) {
         console.log("Error: " + error.message);
     }
@@ -87,6 +96,7 @@ function Home() {
                 },
             });
 
+            setError("");
             setSubjects(response.data.subjects);
         } catch (error) {
             console.error("Error fetching subjects:", error);
@@ -98,45 +108,48 @@ function Home() {
   }, []);
 
   return (
+    <div className="home-container">
+      <Sidebar />
+      
+      {/* Component to add and remove subjects */}
+      <div className="main-content">
+        <h1 className = "welcome">Welcome, {user.name}!</h1>
+        <h3 className = "writeup">Subjects:</h3>
+        <div className="writeup">
+          <p className="writeup">Enter the subjects you wish to plan for here.</p>
+          <p className="writeup">To join matching go to start matching page and plan your study session!</p>
+        </div>
+        <div className="subjects">        
+        <div className="add-subject">
+          <input
+            type="text"
+            className="add-subject"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Enter new subject e.g. CS101"
+          />
+          <button onClick={handleAddSubject} className="add-subject">
+            Add Subject
+          </button>
+        </div>
 
-<div className="home-container">
-  <Sidebar />
-
-  {/* Component to add and remove subjects */}
-  <div className="main-content">
-    <h1 className = "welcome">Welcome, {user.name}!</h1>
-    <h3 className = "sub">Subjects:</h3>
-    <ul className="list-group">
-      {subjects.map((subject, index) => (
-        <li key={index} className="list-group-item">
-          {subject}
-          <button
-            onClick={() => handleDeleteSubject(subject)}
-            className="btn btn-danger btn-sm delete-button" // Add a class for styling
-            >
-              x
-            </button>
-        </li>
-      ))}
-    </ul>
-    
-    <div className="add-subject"> {/* Apply the new CSS class here */}
-      <input
-        type="text"
-        className="form-control mb-2 small-input"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Enter new subject"
-      />
-      <button onClick={handleAddSubject} className="btn btn-primary mb-3">
-        Add Subject
-      </button>
+        <p style={{color: "red"}}>{errors}</p>
+        <ul className="list-group">
+          {subjects.map((subject, index) => (
+            <li key={index} className="list-group-item">
+              {subject}
+              <button
+                onClick={() => handleDeleteSubject(subject)}
+                >
+                  <span>&#10005;</span>
+                </button>
+            </li>
+          ))}
+        </ul>
+        </div>
+        
+      </div>
     </div>
-
-    {errors && <p>{errors}</p>}
-  </div>
-</div>
-
   );
 }
 

@@ -24,7 +24,7 @@ function AllUsers() {
   }, []);
 
   return (
-    <div className="homes">
+    <div className="home-container">
       <SideBar />
       <div className="main-content">
         <h1 className="welcome">Discover Your Friends</h1>

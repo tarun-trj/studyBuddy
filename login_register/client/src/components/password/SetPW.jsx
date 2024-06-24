@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Navbar from '../Navbar';
 
 function SetPW(){
     const { token } = useParams();
@@ -38,32 +39,63 @@ function SetPW(){
     };
 
     return (
-        <div>
-            <h2>Reset Password</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>New Password:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Confirm New Password:</label>
-                    <input
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <button type="submit">Reset Password</button>
+        <div className="full">
+      <div className="about-page">
+        <Navbar />
+        <div className="content-container">
+          <div className="content password">
+            <h1 style={{fontFamily: "Montserrat"}}>Reset Password</h1>
+            <form onSubmit={handleSubmit} className='starter-form'>
+              <label style={{alignSelf: "start"}}>New Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                style={{width: "100%", padding: "5px"}}
+              />
+              <label style={{alignSelf: "start"}}>Confirm New Password</label>
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                style={{width: "100%", padding: "5px"}}
+              />
+              <button type="submit" className='starter-login' style={{border: "2px solid #318a7e", marginTop: "20px", borderRadius: "5px", width: "100%"}}>Reset Password</button>
             </form>
-            {message && <p>{message}</p>}
-            {valid && <p>Email does not exist</p>}
+
+            {valid && <p>{message}</p>}
+          </div>
         </div>
+      </div>
+    </div>
+        // <div>
+        //     <h2>Reset Password</h2>
+        //     <form onSubmit={handleSubmit}>
+        //         <div>
+        //             <label>New Password:</label>
+        //             <input
+        //                 type="password"
+        //                 value={password}
+        //                 onChange={(e) => setPassword(e.target.value)}
+        //                 required
+        //             />
+        //         </div>
+        //         <div>
+        //             <label>Confirm New Password:</label>
+        //             <input
+        //                 type="password"
+        //                 value={confirmPassword}
+        //                 onChange={(e) => setConfirmPassword(e.target.value)}
+        //                 required
+        //             />
+        //         </div>
+        //         <button type="submit">Reset Password</button>
+        //     </form>
+        //     {message && <p>{message}</p>}
+        //     {valid && <p>Email does not exist</p>}
+        // </div>
     );
 };
 
