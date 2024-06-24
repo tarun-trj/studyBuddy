@@ -53,7 +53,14 @@ function Match() {
   }, [partnerEmail, token, user.email]);
 
   if (!partnerEmail) {
-    return <div>Loading...</div>; // You can show a loading indicator here
+    return (
+    <div className="match-container">
+      <Sidebar />
+      <div className="main-content">
+        <h1 className="welcome">No partner found please start a match in Start Matching Page</h1>
+      </div>
+    </div>
+    );
   }
 
   return (

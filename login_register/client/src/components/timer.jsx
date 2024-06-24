@@ -29,7 +29,6 @@ const Timer = () => {
         value: {
           fontFamily: "Digital 7",
           backgroundColor: "rgba(255, 255, 255, 0.2)", // Example: Background color
-          textAlign: "center", // Example: Center text alignment   
           fontSize: '1rem',
           margin: '0.2rem',
           padding: '0.2rem',

@@ -259,27 +259,25 @@ div#root{
 }
 
 .task-card {
+  font-family: 'Lato';
   display: flex;
   align-items: center;
-  padding: 15px;
+  padding: 12px;
   margin-bottom: 10px;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .task-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transform: translateY(-4px);
+  transform: translateY(-2px);
 }
 
 .task-card .task-description {
   flex: 1; /* Take remaining space */
   margin: 0 10px; /* Add margin around task description */
   font-size: 1.2em; /* Larger font size for better readability */
-  color: #333; /* Darker text color */
+  color: #777; /* Darker text color */
 }
 
 .task-card .task-description.completed {
@@ -396,4 +394,20 @@ div.content.password form {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+
+button.add-task {
+  margin-left: 20px;
+  width: 100px;
+  padding: 5px;
+  color: whitesmoke;
+  border: 2px solid #318a7e;
+  background: #318a7e;
+  border-radius: 5px;
+}
+
+button.add-task:hover {
+  color: #318a7e;
+  background: whitesmoke;
 }

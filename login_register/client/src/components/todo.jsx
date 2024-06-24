@@ -7,8 +7,26 @@ import Stopwatch from "./stopwatch.jsx"; // Import the Stopwatch component
 function Todo() {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState("");
-
   const user = JSON.parse(sessionStorage.getItem("user"));
+
+  const styles = {
+    button: {
+
+    },
+    form: {
+      display: "flex",
+      alignItems: "center",
+      marginBottom: "20px",
+    },
+    input: {
+      width: "300px",
+      maxWidth: "40vw",
+      padding: "5px",
+      borderRadius: "5px",
+      border: "2px solid #999",
+      paddingLeft: "10px",
+    },
+  };
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -105,17 +123,21 @@ function Todo() {
       <div className="home-container">
         <Sidebar />
         <div className="main-content">
-          <h1 className="welcome">Todo List</h1>
-          <input
-            type="text"
-            className="form-control mb-2 todo-input"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Enter a task"
-          />
-          <button onClick={handleAddTask} className="btn btn-primary mb-3">
-            Add Task
-          </button>
+          <h1 className="welcome">Study Session</h1>
+          <h2 className="welcome">Todo:</h2>
+            <form onSubmit={handleAddTask} className="add-task" style={styles.form}>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Enter a task"
+              className="add-task"
+              style={styles.input}
+            />
+            <button type="submit" className="add-task" style={styles.button}>
+              Add Task
+            </button>
+          </form>
 
           <h3 className="welcome">Tasks</h3>
           {tasks.length === 0 ? (
