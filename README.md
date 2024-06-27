@@ -1,35 +1,48 @@
-# Project Description
+# Study Buddy Finder
 
 The project is a web application designed to facilitate efficient study management and user interaction. It features multiple pages and functionalities tailored for a personalized and secure user experience.
 
 ## Homepage
+
+![Home](readme_images/home.jpg)
 
 - Displays user-specific information such as subjects of study, user name, and navigation to relevant pages.
 - Allows users to update their subjects and navigate to corresponding pages.
 
 ## Login/Register Page
 
+![Home](readme_images/login.jpg)
+
 - Provides secure authentication using JWT (JSON Web Tokens) for user login and registration.
 - Implements bcrypt for hashing and securely storing passwords.
 
 ## Study Session Page
 
+![Home](readme_images/todo.jpg)
+
 - Includes a dynamic todo list for adding and managing study tasks.
 - Integrates a stopwatch to track study session durations, enhancing productivity monitoring.
 
 ## User Display Page
+![Home](readme_images/all-user.jpg)
 
 - Lists all users registered on the platform, promoting community engagement and networking.
 
-## Match Display Page
+## Start Match Page
+
+![Home](readme_images/start-match.jpg)
 
 - Utilizes the Gale-Shapley algorithm to efficiently match users based on specified criteria, enhancing user interaction and collaboration.
 
-## Guidelines Page
+## Match Display Page
+
+![Home](readme_images/match.jpg)
 
 - Provides users with guidelines and best practices for utilizing the website effectively and responsibly.
 
 ## About Page
+
+![Home](readme_images/about.jpg)
 
 - Offers information about the project, its objectives, and the team behind its development.
 
@@ -45,22 +58,6 @@ The project is a web application designed to facilitate efficient study manageme
 
 - *Algorithms:* Gale-Shapley algorithm for efficient user matching.
 - *Libraries:* Zod and Axios for data handling and API interactions.
-
-# Study Buddy Finder
-
-Study Buddy Finder is a web application designed to help students find study partners based on their courses and interests. This project connects users to a MongoDB database and provides a client-side interface to interact with the system.
-
-![Home](readme_images/home.jpg)
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Technologies Used](#technologies-used)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
