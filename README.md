@@ -33,3 +33,12 @@ To get started with the Study Buddy Finder, follow these steps:
    ```bash
    npm install
    nodemon index.js
+
+4. **Install client-side dependencies and run the client:**
+
+   ```bash
+   cd login_register
+   npm install
+   npm run dev
+
+   This will start the development server and provide you with a link to the website.
