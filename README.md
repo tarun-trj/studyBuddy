@@ -40,5 +40,6 @@ To get started with the Study Buddy Finder, follow these steps:
    cd login_register
    npm install
    npm run dev
+   exit
 
    This will start the development server and provide you with a link to the website.
