@@ -63,13 +63,14 @@ studyBuddy/
 └── README.md
 ```
 
-.git: Contains git version control files.
-.gitignore: Specifies files to be ignored by git.
-login_register: Contains client-side code for the login and registration system.
-node_modules: Contains project dependencies.
-package.json: Lists project details and dependencies.
-package-lock.json: Records the exact versions of installed dependencies.
-readme_images: Contains images for the README file.
-README.md: This file.
+**.git**: Contains git version control files.  
+**.gitignore**: Specifies files to be ignored by git.  
+**login_register**: Contains client-side code for the login and registration system.  
+**node_modules**: Contains project dependencies.  
+**package.json**: Lists project details and dependencies.  
+**package-lock.json**: Records the exact versions of installed dependencies.  
+**readme_images**: Contains images for the README file.  
+**README.md**: This file.
+
 
 
