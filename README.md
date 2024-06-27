@@ -27,3 +27,9 @@ To get started with the Study Buddy Finder, follow these steps:
 2. **Connect to MongoDB:**
 
    Ensure you have MongoDB installed and running on your system. Update the connection string in your project's configuration file if necessary.
+
+3. **Install server-side dependencies and run the server:**
+
+   ```bash
+   npm install
+   nodemon index.js
