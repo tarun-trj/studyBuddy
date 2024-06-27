@@ -23,3 +23,7 @@ To get started with the Study Buddy Finder, follow these steps:
    ```bash
    git clone <repository-url>
    cd studyBuddy
+
+2. **Connect to MongoDB:**
+
+   Ensure you have MongoDB installed and running on your system. Update the connection string in your project's configuration file if necessary.
