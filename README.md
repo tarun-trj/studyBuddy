@@ -52,7 +52,7 @@ The project is a web application designed to facilitate efficient study manageme
 
 - The Change Password page allows users to securely update their passwords. It utilizes the Nodemailer library for sending password change notifications and ensuring secure communication.
 
-# Functionality
+### Functionality
 
 - *Secure Password Update:* Users can update their passwords securely.
 - *Notification:* Nodemailer is used to send notifications confirming password changes, ensuring users are informed of any updates to their account security.
