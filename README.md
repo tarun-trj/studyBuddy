@@ -42,3 +42,7 @@ To get started with the Study Buddy Finder, follow these steps:
    cd login_register
    npm install
    npm run dev
+
+## Usage
+
+Once the server and client are running, open the provided link in your browser to access the Study Buddy Finder. Register an account, log in, and start finding study partners!
