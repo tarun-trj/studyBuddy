@@ -46,6 +46,17 @@ The project is a web application designed to facilitate efficient study manageme
 
 - Offers information about the project, its objectives, and the team behind its development.
 
+## Change Password Page
+
+![Home](readme_images/change-password.jpg)
+
+- The Change Password page allows users to securely update their passwords. It utilizes the Nodemailer library for sending password change notifications and ensuring secure communication.
+
+# Functionality
+
+- *Secure Password Update:* Users can update their passwords securely.
+- *Notification:* Nodemailer is used to send notifications confirming password changes, ensuring users are informed of any updates to their account security.
+
 ## Technologies Used
 
 - *Database:* MongoDB for storing user data securely.
@@ -58,6 +69,8 @@ The project is a web application designed to facilitate efficient study manageme
 
 - *Algorithms:* Gale-Shapley algorithm for efficient user matching.
 - *Libraries:* Zod and Axios for data handling and API interactions.
+
+  
 
 ## Installation
 
