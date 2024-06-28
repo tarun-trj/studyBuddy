@@ -84,7 +84,7 @@ To get started with the Study Buddy Finder, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clonehttps://github.com/tarun-trj/studyBuddy.git
+   git clone https://github.com/tarun-trj/studyBuddy.git
    cd studyBuddy
 
 2. **Connect to MongoDB:**
