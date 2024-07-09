@@ -107,6 +107,7 @@ function displayMatching(matching, emails) {
 }
 
 function handleData() {
+    console.log('match run started');
     // Fetch employees and subjects from the database
     studentModel.find().select('email branch')
         .then(employees => {
